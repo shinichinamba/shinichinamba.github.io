@@ -64,7 +64,7 @@ search_full_content: false # can have performance implications for large sites
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-exclude: ["Gemfile", "Gemfile.lock", "README.md", "scripts", ".DS_Store", ".jekyll-cache", "shinichinamba.Rproj/", ".Rproj.user/", "src/"]
+exclude: ["Gemfile", "Gemfile.lock", "README.md", "scripts", ".DS_Store", ".jekyll-cache", "shinichinamba.Rproj", ".Rproj.user/", "src/", "docs/"]
 
 plugins:
   - jekyll-seo-tag
