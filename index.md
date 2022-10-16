@@ -33,7 +33,7 @@ Education
 Job
 ---
 
-* **Apr 2018 – Mar 2020** Japan Red Cross Medical Center (Resident)
+* **Apr 2018 – Mar 2020** Japan Red Cross Medical Center (Junior Resident)
 
 
 Fellowships
