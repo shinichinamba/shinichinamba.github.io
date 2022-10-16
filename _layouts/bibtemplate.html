@@ -1,0 +1,34 @@
+---
+---
+<p>
+{{reference}}
+　　<br>
+    {% if entry.doi %} 
+    <a class="bib-materials" href="https://doi.org/{{entry.doi}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">DOI</button></a>
+    {% endif %}
+
+    {% if link %}
+    <a href="{{link}}"><button class="btn btnId btnPub--download" style="outline:none; position:relative;white-space: normal;">PDF</button></a>
+    {% endif %}
+    
+    {% if links['sup.pdf'] %}
+    <a href="{{links['sup.pdf']}}"><button class="btn btnId btnPub--supplement" style="outline:none; position:relative;white-space: normal;">Supplement</button></a>
+    {% endif %}
+    
+    {% if entry.featured %} 
+    <a class="bib-materials" href="https://doi.org/{{entry.doi}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">Feature article</button></a>
+    {% endif %}
+    
+    {% if entry.press %} 
+    <a class="bib-materials" href="{{entry.press_jp}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">Press release (English)</button></a>
+    {% endif %}
+
+{% if entry.press_jp %} 
+    <a class="bib-materials" href="{{entry.press_jp}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">Press release (Japanese)</button></a>
+    {% endif %}
+
+    {% if entry.web %} 
+    <a class="bib-materials" href="{{entry.web}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">Website</button></a>
+    {% endif %}
+    
+</p>

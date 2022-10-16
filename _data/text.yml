@@ -191,3 +191,10 @@ tr: &DEFAULT_TR
   powered_by: "Powered by"
 tr-TR:
   <<: *DEFAULT_TR
+
+# Japanese
+# -----------------
+jp: 
+  <<: *DEFAULT_EN
+jp-JP:
+  <<: *DEFAULT_EN

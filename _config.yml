@@ -15,15 +15,15 @@
 # in the templates via {{ site.myvariable }}.
 theme: jekyll-theme-so-simple
 # remote_theme: mmistakes/so-simple-theme
-skin: "/assets/css/skins/default.css"
+skin: "/assets/css/skins/colored.css"
 locale: en-US
-title: "My Awesome Site"
-description: "It really is the best."
-baseurl: # the subpath of your site, e.g. "/blog"
-url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+title: "Shinichi Namba"
+description: "Ph.D. candidate, M.D. at Department of Statistical Genetics, Osaka University Graduate School of Medicine"
+baseurl: "" # the subpath of your site, e.g. "/blog"
+url: https://ShinichiNamba.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 logo: # path of site logo, e.g. "/images/logo.png"
 date_format: "%B %-d, %Y"
-read_time: # reading time estimates, e.g. true
+read_time: false # reading time estimates, e.g. true
 words_per_minute: # 200
 mathjax:
   enable: # MathJax equations, e.g. true, false (default)
@@ -38,7 +38,7 @@ google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 disqus:
   shortname: # Disqus shortname, e.g. "my_disqus_shortname"
 twitter:
-  username: # site's Twitter username, e.g. "mmistakes"
+  username: NambaShinichi # site's Twitter username, e.g. "mmistakes"
 
 # Liquid
 liquid:
@@ -64,20 +64,13 @@ search_full_content: false # can have performance implications for large sites
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude: ["Gemfile", "Gemfile.lock", "README.md", "scripts", ".DS_Store", ".jekyll-cache", "shinichinamba.Rproj/", ".Rproj.user/", "src/"]
 
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
-  - jekyll-paginate
+  # - jekyll-paginate
 
 # Front Matter Defaults
 defaults:
@@ -91,17 +84,59 @@ defaults:
 
 # Site Author
 author:
-  name:
-  picture:
-  email:
-  twitter:
+  name: Shinichi Namba
+  picture: /_img/portrait.jpg
+  email: snamba@sg.med.osaka-u.ac.jp
+  twitter: NambaShinichi
   links:
-    - title:
-      url:
-      icon:
+    - title: Twitter
+      url: https://twitter.com/NambaShinichi
+      icon: fab fa-twitter-square
+    - title: Github
+      url: https://github.com/shinichinamba
+      icon: fab fa-github
+    - title: ORCID
+      url: https://orcid.org/0000-0002-7486-3146
+      icon: fab fa-orcid
+    - title: Mail
+      url: mailto:snamba@sg.med.osaka-u.ac.jp
+      icon: fas fa-envelope
 
 # Footer Links
 footer_links:
   - title: Feed
     url: atom.xml
     icon: fas fa-rss-square
+  - title: Twitter
+    url: https://twitter.com/NambaShinichi
+    icon: fab fa-twitter-square
+  - title: Github
+    url: https://github.com/shinichinamba
+    icon: fab fa-github
+  - title: ORCID
+    url: https://orcid.org/0000-0002-7486-3146
+    icon: fab fa-orcid
+  - title: Mail
+    url: mailto:snamba@sg.med.osaka-u.ac.jp
+    icon: fas fa-envelope
+  # - title: CV
+  #   url: mailto:snamba@sg.med.osaka-u.ac.jp
+  #   icon: fas fa-circle-user
+
+
+# jekyll-scholar settings
+scholar:
+  bibtex_filters:
+    - latex
+  style: _bibliography/custom.csl
+  sort_by: year,month
+  order: descending
+  source: _bibliography
+  bibliography: publications
+  bibliography_template: bibtemplate
+  replace_strings: true
+  join_strings:    true
+  details_dir:    bibliography
+  details_layout: _includes/bibtex.html
+  details_link:   Details
+  query: "@*"

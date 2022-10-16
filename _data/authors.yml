@@ -1,16 +1,17 @@
-# Sample Authors
-# Remove file or replace with your own
-
-Billy Rick:
-  name: Billy Rick
-  picture: /images/bio-photo-2.jpg
-  twitter: "@billyrick"
+Shinichi Namba:
+  name: Shinichi Namba
+  picture: /_img/portrait.jpg
+  twitter: "@NambaShinichi"
   links:
     - title: Twitter
-      url: https://twitter.com/billyrick
+      url: https://twitter.com/NambaShinichi
       icon: fab fa-twitter-square
-
-Cornelius Fiddlebone:
-  name: Cornelius Fiddlebone
-  picture: /images/bio-photo.jpg
-  twitter: corneliusfiddlebone
+    - title: Github
+      url: https://github.com/shinichinamba
+      icon: fab fa-github
+    - title: ORCID
+      url: https://orcid.org/0000-0002-7486-3146
+      icon: fab fa-orcid
+    - title: Mail
+      url: mailto:snamba@sg.med.osaka-u.ac.jp
+      icon: fas fa-envelope
