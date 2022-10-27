@@ -21,6 +21,8 @@ Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygen
 News
 ----
 
+**Oct 27, 2022**	An article that comprehensively evaluated the associations between common germline risk and somatic alterations in cancer has published in Cancer Research!
+
 **Oct 16, 2022**	Started my homepage !
 
 

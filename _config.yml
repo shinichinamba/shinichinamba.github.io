@@ -129,7 +129,7 @@ scholar:
   bibtex_filters:
     - latex
   style: _bibliography/custom.csl
-  sort_by: year,month
+  sort_by: none
   order: descending
   source: _bibliography
   bibliography: publications
