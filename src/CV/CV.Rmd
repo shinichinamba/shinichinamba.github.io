@@ -1,0 +1,64 @@
+---
+name: Shinichi
+surname: Namba
+position: "Ph.D candidate, M.D."
+address: "Department of Statistical Genetics, Osaka University Graduate School of Medicine"
+phone: +81 3 5841 1860
+www: https://www.shinichinamba.github.io
+email: "snamba@sg.med.osaka-u.ac.jp"
+twitter: shinichinamba
+github: shinichinamba
+date: "`r format(Sys.time(), '%B %Y')`"
+output: vitae::awesomecv
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(rlang)
+library(tibble)
+library(dplyr)
+library(stringr)
+# ORCID_ID <- "0000-0002-7486-3146"
+```
+
+# Some stuff about me
+
+ * I poisoned myself doing research.
+ * I was the first woman to win a Nobel prize
+ * I was the first person and only woman to win a Nobel prize in two different sciences.
+
+# Education
+
+```{r}
+edu <- 
+  tribble(
+  ~Title, ~Year, ~Inst, ~Place,
+  "M.D.", "2012-2018", "Osaka University", "Osaka, Japan",
+  "Ph.D. student", "2020-", "The University of Tokyo", "Tokyo, Japan"
+)
+# detailed_entries(edu, Title, Year, Inst, Place)
+```
+
+# Nobel Prizes
+
+```{r}
+tribble(
+  ~Year, ~Type, ~Desc,
+  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
+  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
+) %>% 
+  brief_entries(
+    glue::glue("Nobel Prize in {Type}"),
+    Year, 
+    Desc
+  )
+```
+
+# Publications
+
+```{r}
+bib <- bibliography_entries("_bibliography/publications.bib")
+# arrange(bib, desc(issued))
+```
+

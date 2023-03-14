@@ -1,0 +1,20 @@
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xetex 2023.1.4)  5 JAN 2023 09:49
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**CV.tex
+(./CV.tex
+! Undefined control sequence.
+l.23 \documentclass
+                   [11pt,a4paper,]{awesome-cv}
+? 
+! Undefined control sequence.
+l.26 \usepackage
+                {geometry}
+? 
+! Emergency stop.
+l.26 
+     
+End of file on the terminal!
+
+No pages of output.
