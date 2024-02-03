@@ -18,7 +18,7 @@ theme: jekyll-theme-so-simple
 skin: "/assets/css/skins/colored.css"
 locale: en-US
 title: "Shinichi Namba"
-description: "Ph.D. candidate, M.D. at Department of Statistical Genetics, Osaka University Graduate School of Medicine"
+description: "Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D."
 baseurl: "" # the subpath of your site, e.g. "/blog"
 url: https://ShinichiNamba.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 logo: # path of site logo, e.g. "/images/logo.png"
@@ -86,7 +86,7 @@ defaults:
 author:
   name: Shinichi Namba
   picture: /_img/portrait.jpg
-  email: snamba@sg.med.osaka-u.ac.jp
+  email: snamba@m.u-tokyo.ac.jp
   twitter: NambaShinichi
   links:
     - title: Twitter
