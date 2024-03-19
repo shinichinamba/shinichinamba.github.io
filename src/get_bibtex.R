@@ -46,13 +46,16 @@ write_bib_texts <- function(..., out) {
 #   out = "_bibliography/publications.bib"
 # )
 write_bib_texts(
-  get_bib(doi = "10.1126/sciadv.ade2780"),  # rs671
-  get_bib(doi = "10.1038/s41588-023-01500-0"),  # PRSadjGWAS
-  get_bib(doi = "10.1038/s41467-023-39136-7"),  # GSato PanCan
-  get_bib(doi = "10.1136/ard-2023-224537"),  # Tanaka 
-  get_bib(doi = "10.1038/s41467-023-41857-8"),  # Sekita
-  get_bib(doi = "10.1038/s41588-023-01375-1"),  # Edahiro scRNAseq
-  get_bib(doi = "10.1101/2023.03.31.23287839"), # Suzuki T2D Nature (preprint)
+  # get_bib(doi = "10.1126/sciadv.ade2780"),  # rs671
+  # get_bib(doi = "10.1038/s41588-023-01500-0"),  # PRSadjGWAS
+  # get_bib(doi = "10.1038/s41467-023-39136-7"),  # GSato PanCan
+  # get_bib(doi = "10.1136/ard-2023-224537"),  # Tanaka 
+  # get_bib(doi = "10.1038/s41467-023-41857-8"),  # Sekita
+  # get_bib(doi = "10.1038/s41588-023-01375-1"),  # Edahiro scRNAseq
+  # get_bib(doi = "10.1101/2023.03.31.23287839"), # Suzuki T2D Nature (preprint)
+  # get_bib(doi = "10.1038/s41586-024-07019-6"), # Suzuki T2D Nature
+  # get_bib(doi = "10.1016/j.xcrm.2024.101430"), # GBMI POAG
+  # get_bib(doi = "10.1111/apt.17953"), # FIB4-EASL AP&T
+  get_bib(doi = "10.15036/arerugi.72.1110"), # Arerugi WGS pipeline
   out = "_bibliography/tmp.bib"
 )
-# GBMI POAG CellRepMed Novel ancestry-specific primary open-angle glaucoma loci and shared biology with vascular mechanisms and cell proliferation

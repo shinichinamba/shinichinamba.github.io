@@ -9,7 +9,7 @@ entries_layout: list
 I am an assistant professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo, Japan (Prof. Yukinori Okada). 
 My research focuses on human genetics. 
 In particular, I am interested in elucidating the genetic structure of complex traits, disease risk prediction, and drug discovery.
-Before completing Ph.D. at Osaka University (Prof. Yukinori Okada), I studied transcriptome and methylome in cancer under Professors Hiroyuki Mano and Masahito Kawazu at the University of Tokyo.
+Before completing Ph.D. at Osaka University (Prof. Yukinori Okada), I studied transcriptome and methylome in cancer under Prof. Hiroyuki Mano and Dr. Masahito Kawazu at the University of Tokyo.
 
 
 Research Interests
@@ -21,11 +21,9 @@ Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygen
 News
 ----
 
-**Feb 3, 2024**	Updated the status and publications!
+**Mar 19, 2024**	Updated the publications!
 
-**Oct 27, 2022**	An article that comprehensively evaluated the associations between common germline risk and somatic alterations in cancer has published in Cancer Research!
-
-**Oct 16, 2022**	Started my homepage !
+**Oct 16, 2022**	Started my homepage!
 
 
 Job

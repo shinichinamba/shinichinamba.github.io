@@ -17,3 +17,9 @@ Publications
 
 {% bibliography %}
 
+
+Reviews (Japanese)
+------------------
+
+{% bibliography --file japanese_reviews.bib %}
+
