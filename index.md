@@ -21,7 +21,7 @@ Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygen
 News
 ----
 
-**Mar 19, 2024**	Updated the publications!
+**Oct 19, 2024**	Updated the publications!
 
 **Oct 16, 2022**	Started my homepage!
 
@@ -46,6 +46,13 @@ Fellowships
 -----------
 
 * **Apr 2020 – Mar 2024 –** Takeda Science Foundation Scholarship
+
+
+Grants
+------
+
+* **June 2024 –** Japan Foundation for Applied Enzymology, Grants related to Cardiovascular Innovative Conference
+* **July 2024 –** Japan Agency for Medical Research and Development (AMED), "A trans-disciplinary and trans-omics study of gene–environment interactions towards genomics-driven personalized medicine"
 
 
 Selected Publications [[full list]]({{ site.baseurl }}/publications)
