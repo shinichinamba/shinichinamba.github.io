@@ -23,7 +23,7 @@ entries_layout: list
 更新情報
 --------
 
-**2024/10/19**	論文リストを更新しました
+**2025/4/7**	論文リストを更新しました
 
 **2022/10/16**	ホームページを開設しました
 
@@ -57,5 +57,7 @@ entries_layout: list
 
 主要学術論文 [[一覧]]({{ site.baseurl }}/publications)
 ------------------------------------------------------
+
+\* denotes equal contribution; \*\* denotes (co-)corresponding authors
 
 {% bibliography --query @*[status=selected] %}

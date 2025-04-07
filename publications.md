@@ -3,7 +3,7 @@ layout: page
 title: Publications
 ---
 
-\* denotes equal contribution
+\* denotes equal contribution; \*\* denotes (co-)corresponding authors
 
 
 Preprints

@@ -45,7 +45,7 @@ write_bib_texts <- function(..., out = stdout()) {
 #   get_bib(pmid = 30637877), # Methylation in cancer
 #   out = "_bibliography/publications.bib"
 # )
-write_bib_texts(
+# write_bib_texts(
   # get_bib(doi = "10.1126/sciadv.ade2780"),  # rs671
   # get_bib(doi = "10.1038/s41588-023-01500-0"),  # PRSadjGWAS
   # get_bib(doi = "10.1038/s41467-023-39136-7"),  # GSato PanCan
@@ -56,16 +56,27 @@ write_bib_texts(
   # get_bib(doi = "10.1038/s41586-024-07019-6"), # Suzuki T2D Nature
   # get_bib(doi = "10.1016/j.xcrm.2024.101430"), # GBMI POAG
   # get_bib(doi = "10.1111/apt.17953"), # FIB4-EASL AP&T
-  get_bib(doi = "10.15036/arerugi.72.1110"), # Arerugi WGS pipeline
-  out = "_bibliography/tmp.bib"
-)
+  # get_bib(doi = "10.15036/arerugi.72.1110"), # Arerugi WGS pipeline
+#   out = "_bibliography/tmp.bib"
+# )
+
+# write_bib_texts(
+#   get_bib(doi = "10.1038/s41588-024-01782-y"), # Ojima T2D PRS
+#   get_bib(doi = "10.1016/j.xgen.2024.100625"), # Tomofuji scLinax
+#   get_bib(doi = "10.1136/jnnp-2024-333690"), # Cris Kato
+#   get_bib(doi = "10.1038/s43856-024-00596-7"), # Naito causal forest
+#   get_bib(doi = "10.1038/s41588-024-01896-3"), # Wang TF e/pQTL
+#   get_bib(doi = "10.1038/s41562-024-02019-y") # Embryo PRS
+# )
+# write_bib_texts(get_bib(doi = "10.21203/rs.3.rs-4535534/v1")) # Ilana Caro prasma/CSF MR
 
 write_bib_texts(
-  get_bib(doi = "10.1038/s41588-024-01782-y"), # Ojima T2D PRS
-  get_bib(doi = "10.1016/j.xgen.2024.100625"), # Tomofuji scLinax
-  get_bib(doi = "10.1136/jnnp-2024-333690"), # Cris Kato
-  get_bib(doi = "10.1038/s43856-024-00596-7"), # Naito causal forest
-  get_bib(doi = "10.1038/s41588-024-01896-3"), # Wang TF e/pQTL
-  get_bib(doi = "10.1038/s41562-024-02019-y") # Embryo PRS
+  get_bib(doi = "10.1038/s41467-024-54052-0"), # KYamamoto Jomon
+  get_bib(doi = "10.1038/s41588-024-02022-z"), # Sasa virome
+  get_bib(doi = "10.1136/jnnp-2024-333690"), # Chris Kato PRS
+  get_bib(doi = "10.1016/j.xgen.2025.100783"), # Sonehara Vaccine GWAS
+  get_bib(doi = "10.1016/j.xgen.2025.100776"), # Yata & Sato NMO
+  out = "_bibliography/tmp.bib"
 )
-write_bib_texts(get_bib(doi = "10.21203/rs.3.rs-4535534/v1")) # Ilana Caro prasma/CSF MR
+write_bib_texts(get_bib(doi = "10.1101/2024.11.26.24316723"), out = "_bibliography/tmp_preprint.bib") # GBMI endometriosis
+

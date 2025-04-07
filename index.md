@@ -21,7 +21,7 @@ Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygen
 News
 ----
 
-**Oct 19, 2024**	Updated the publications!
+**Apr 7, 2025**	Updated the publications!
 
 **Oct 16, 2022**	Started my homepage!
 
@@ -57,5 +57,7 @@ Grants
 
 Selected Publications [[full list]]({{ site.baseurl }}/publications)
 --------------------------------------------------------------------
+
+\* denotes equal contribution; \*\* denotes (co-)corresponding authors
 
 {% bibliography --query @*[status=selected] %}
