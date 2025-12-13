@@ -14,21 +14,18 @@ Before completing Ph.D. at Osaka University (Prof. Yukinori Okada), I studied tr
 
 Research Interests
 ------------------
-
 Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygenic Score / Drug discovery ...
 
 
 News
 ----
-
-**Apr 7, 2025**	Updated the publications!
+**Dec 13, 2025**	Updated the publications!
 
 **Oct 16, 2022**	Started my homepage!
 
 
 Job
 ---
-
 * **Nov 2024 –** Invited Faculty, Laboratory for Systems Genetics, RIKEN Center for Integrative Medical Sciences
 * **Oct 2024 –** Assistant Professor, Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo
 * **Oct 2024 –** Invited Faculty, Department of Statistical Genetics, Osaka University Graduate School of Medicine
@@ -37,27 +34,24 @@ Job
 
 Education
 ---------
-
 * **Apr 2020 – Sep 2023** Ph.D. (Medicine), Department of Statistical Genetics, Osaka University Graduate School of Medicine
 * **Apr 2012 – Mar 2018** University of Tokyo（B.S.[Medicine], M.D.）
 
 
 Fellowships
 -----------
-
 * **Apr 2020 – Mar 2024 –** Takeda Science Foundation Scholarship
 
 
 Grants
 ------
-
+* **Oct 2025 –** Japan Agency for Medical Research and Development (AMED), "Establishment of drug candidates through integrative analysis of the functional spectrum of genetic mutations and interdisciplinary collaboration of next-generation drug discovery fields"
 * **June 2024 –** Japan Foundation for Applied Enzymology, Grants related to Cardiovascular Innovative Conference
 * **July 2024 –** Japan Agency for Medical Research and Development (AMED), "A trans-disciplinary and trans-omics study of gene–environment interactions towards genomics-driven personalized medicine"
 
 
 Selected Publications [[full list]]({{ site.baseurl }}/publications)
 --------------------------------------------------------------------
-
 \* denotes equal contribution; \*\* denotes (co-)corresponding authors
 
 {% bibliography --query @*[status=selected] %}

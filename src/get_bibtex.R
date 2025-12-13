@@ -70,13 +70,21 @@ write_bib_texts <- function(..., out = stdout()) {
 # )
 # write_bib_texts(get_bib(doi = "10.21203/rs.3.rs-4535534/v1")) # Ilana Caro prasma/CSF MR
 
+# write_bib_texts(
+#   get_bib(doi = "10.1038/s41467-024-54052-0"), # KYamamoto Jomon
+#   get_bib(doi = "10.1038/s41588-024-02022-z"), # Sasa virome
+#   get_bib(doi = "10.1136/jnnp-2024-333690"), # Chris Kato PRS
+#   get_bib(doi = "10.1016/j.xgen.2025.100783"), # Sonehara Vaccine GWAS
+#   get_bib(doi = "10.1016/j.xgen.2025.100776"), # Yata & Sato NMO
+#   out = "_bibliography/tmp.bib"
+# )
+
 write_bib_texts(
-  get_bib(doi = "10.1038/s41467-024-54052-0"), # KYamamoto Jomon
-  get_bib(doi = "10.1038/s41588-024-02022-z"), # Sasa virome
-  get_bib(doi = "10.1136/jnnp-2024-333690"), # Chris Kato PRS
-  get_bib(doi = "10.1016/j.xgen.2025.100783"), # Sonehara Vaccine GWAS
-  get_bib(doi = "10.1016/j.xgen.2025.100776"), # Yata & Sato NMO
+  get_bib(doi = "10.1038/s43587-025-01006-w"), # cSVD proteogenomics
+  get_bib(doi = "10.1038/s41588-025-02266-3"), # Edahiro and Sato Deciphering state-dependent immune features from multi-layer omics data at single-cell resolution
+  get_bib(doi = "10.1016/j.xgen.2025.100978"), # Sonehara Psoriasis GWAS
+  get_bib(doi = "10.1038/s41467-025-58149-y"), # Yamamoto and Shirai Pathway PRS
   out = "_bibliography/tmp.bib"
 )
-write_bib_texts(get_bib(doi = "10.1101/2024.11.26.24316723"), out = "_bibliography/tmp_preprint.bib") # GBMI endometriosis
+write_bib_texts(get_bib(doi = "10.1101/2025.07.26.666712"), out = "_bibliography/tmp_preprint.bib") # Shiraishi centromere preprint
 
