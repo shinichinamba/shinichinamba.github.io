@@ -32,6 +32,12 @@ Job
 * **Apr 2018 – Mar 2020** Japan Red Cross Medical Center (Junior Resident)
 
 
+Awards
+------
+
+* **Dec 19, 2025** Best Oral Presentation Award, 70th Annual Meeting of the Japanese Society of Human Genetics
+
+
 Education
 ---------
 * **Apr 2020 – Sep 2023** Ph.D. (Medicine), Department of Statistical Genetics, Osaka University Graduate School of Medicine
@@ -48,6 +54,13 @@ Grants
 * **Oct 2025 –** Japan Agency for Medical Research and Development (AMED), "Establishment of drug candidates through integrative analysis of the functional spectrum of genetic mutations and interdisciplinary collaboration of next-generation drug discovery fields"
 * **June 2024 –** Japan Foundation for Applied Enzymology, Grants related to Cardiovascular Innovative Conference
 * **July 2024 –** Japan Agency for Medical Research and Development (AMED), "A trans-disciplinary and trans-omics study of gene–environment interactions towards genomics-driven personalized medicine"
+
+
+Teaching Experience
+-------------------
+* **Apr 2025 –** Biochemistry (Lecture), Faculty of Medicine, The University of Tokyo
+* **Oct 2023 –** Biochemistry (Laboratory Course), Faculty of Medicine, The University of Tokyo
+* **Apr 2024 –** Advanced Genetic Informatics, Graduate School of Medicine, The University of Tokyo
 
 
 Selected Publications [[full list]]({{ site.baseurl }}/publications)
