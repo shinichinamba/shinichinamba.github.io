@@ -11,12 +11,14 @@ Preprints
 
 {% bibliography --file preprints.bib %}
 
+<HR>
 
 Publications
 ------------
 
 {% bibliography %}
 
+<HR>
 
 Reviews (Japanese)
 ------------------
