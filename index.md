@@ -4,7 +4,7 @@ limit: 10
 entries_layout: list
 ---
 
-![MyPicture]({{ site.baseurl }}/assets/img/portrait.png)
+![MyPicture]({{ site.baseurl }}/assets/img/0141.jpg)
 
 > I am an assistant professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo, Japan (Prof. Yukinori Okada). 
 > My research focuses on human genetics. 
@@ -15,7 +15,7 @@ entries_layout: list
 
 News
 ----
-* **Feb 17, 2026**	Updated the publication list!
+* **Feb 28, 2026**	Updated the publication list!
 * **Oct 16, 2022**	Started my homepage!
 {: .notice--accent}
 

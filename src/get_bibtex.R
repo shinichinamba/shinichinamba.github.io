@@ -89,12 +89,16 @@ write_bib_texts <- function(..., out = stdout()) {
 # write_bib_texts(get_bib(doi = "10.1101/2025.07.26.666712"), out = "_bibliography/tmp_preprint.bib") # Shiraishi centromere preprint
 
 
+# write_bib_texts(
+#   get_bib(doi = "10.1038/s41431-026-02030-z"), # Moya WES
+#   get_bib(doi = "10.1038/s41588-025-02483-w"), # GBMI thyroid
+#   get_bib(doi = "10.1038/s41586-025-10054-6"), # GxE
+#   out = "_bibliography/tmp.bib"
+# )
+# write_bib_texts(get_bib(doi = "10.64898/2026.02.10.26346040"), out = "_bibliography/tmp_preprint.bib") # Acetate preprint
+
 write_bib_texts(
-  get_bib(doi = "10.1038/s41431-026-02030-z"), # Moya WES
-  get_bib(doi = "10.1038/s41588-025-02483-w"), # GBMI thyroid
-  get_bib(doi = "10.1038/s41586-025-10054-6"), # GxE
+  get_bib(doi = "10.1038/s41591-026-04213-z"), # LoY Go Sato
   out = "_bibliography/tmp.bib"
 )
-write_bib_texts(get_bib(doi = "10.64898/2026.02.10.26346040"), out = "_bibliography/tmp_preprint.bib") # Acetate preprint
-
 
