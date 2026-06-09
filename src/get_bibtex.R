@@ -97,8 +97,23 @@ write_bib_texts <- function(..., out = stdout()) {
 # )
 # write_bib_texts(get_bib(doi = "10.64898/2026.02.10.26346040"), out = "_bibliography/tmp_preprint.bib") # Acetate preprint
 
-write_bib_texts(
-  get_bib(doi = "10.1038/s41591-026-04213-z"), # LoY Go Sato
-  out = "_bibliography/tmp.bib"
+dois <- c(
+  "10.64898/2026.05.21.26353759",
+  "10.64898/2026.03.27.26349357",
+  "10.21203/rs.3.rs-8116602/v1",
+  "10.1101/2025.10.10.25337470",
+  "10.1016/j.ajhg.2026.04.005",
+  "10.1038/s41467-026-70376-5",
+  "10.1161/STROKEAHA.125.053747",
+  "10.1038/s41591-026-04213-z",
+  "10.1038/s41431-026-02030-z",
+  "10.1038/s41588-025-02483-w",
+  "10.1016/j.xgen.2025.100978",
+  "10.1038/s41588-025-02266-3",
+  "10.1038/s41467-025-58149-y"
 )
 
+write_bib_texts(
+  get_bib(doi = dois), # LoY Go Sato
+  out = "_bibliography/tmp.bib"
+)
