@@ -15,7 +15,7 @@ entries_layout: list
 
 News
 ----
-* **Feb 28, 2026**	Updated the publication list!
+* **Jun 9, 2026**	Updated the publication list!
 * **Oct 16, 2022**	Started my homepage!
 {: .notice--accent}
 
