@@ -1,0 +1,17 @@
+# Authored input. bibkey references _bibliography/*.bib; the bibliographic data itself is never duplicated here.
+- bibkey: Namba_2026
+  order: 1
+  summary_en: A cross-population survey of gene-environment interactions across biobanks. The study assembles interaction effects on a common footing so that they can be compared between populations rather than studied one cohort at a time.
+  summary_ja: 複数のバイオバンクを横断して遺伝子–環境相互作用を体系的に解析した研究。相互作用効果を共通の枠組みで整理することで、単一集団ごとの解析では困難だった集団間比較を可能にした。
+- bibkey: Namba_2024
+  order: 2
+  summary_en: A comparison of polygenic score methods applied to embryo selection. Different methods rank the same embryos differently, which bears directly on how such scores should be interpreted in a reproductive setting.
+  summary_ja: 胚選択に用いられる多遺伝子スコアの手法間比較を行った研究。同一の胚に対しても手法によって順位付けが一致しないことを示し、生殖医療の文脈におけるスコア解釈の前提に検討を加えた。
+- bibkey: cancerPRS_2022
+  order: 3
+  summary_en: A pan-cancer analysis linking common germline risk variants to somatic alterations and clinical features, connecting inherited risk with the tumour changes and presentation seen in patients.
+  summary_ja: 生殖細胞系列の一般的なリスク変異が、体細胞変異および臨床像とどのように関連するかを複数のがん種にわたって解析した研究。遺伝的リスクと腫瘍側の変化を結びつけた。
+- bibkey: GBMI_DrugDiscov_2022
+  order: 4
+  summary_en: A practical guideline for genomics-driven drug discovery in the setting of global biobank meta-analysis, describing how large-scale multi-ancestry association results can be turned into candidate drug targets.
+  summary_ja: 国際的なバイオバンク・メタ解析を前提としたゲノム創薬の実践的指針を示した論文。大規模かつ多民族の関連解析結果を創薬標的の候補へつなげる手順を整理した。

@@ -3,6 +3,10 @@
 <p>
 {{reference}}
 　　<br>
+    {% if entry.abstract %}
+    <button type="button" class="btn abstract-toggle" aria-expanded="false" style="outline:none; position:relative;white-space: normal;">Abstract</button>
+    {% endif %}
+
     {% if entry.doi %} 
     <a class="bib-materials" href="https://doi.org/{{entry.doi}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">DOI</button></a>
     {% endif %}
@@ -30,5 +34,9 @@
     {% if entry.web %} 
     <a class="bib-materials" href="{{entry.web}}"><button class="btn" style="outline:none; position:relative;white-space: normal;">Website</button></a>
     {% endif %}
-    
+
+
 </p>
+{% if entry.abstract %}
+<div class="abstract-body" hidden>{{ entry.abstract }}</div>
+{% endif %}

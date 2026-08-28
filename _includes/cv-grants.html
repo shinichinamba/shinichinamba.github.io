@@ -1,0 +1,41 @@
+{%- comment -%}
+  Grants renderer.
+
+  Kept separate from cv-section.html because grants are the one dataset whose
+  shape genuinely differs: the title is quoted with language-specific quote
+  marks, and an optional amount / grant number is appended in parentheses.
+  Folding that into the generic include would need a quoting-mode parameter
+  and two conditional tails -- more total complexity than a short sibling.
+
+  `grant_number` and `amount` are simply absent from the generated YAML when
+  the corresponding show_*_web flag is FALSE, so the presence test below is
+  the whole of the display-flag logic on this side.
+
+  Params: rows (array, required), lang ("en" | "ja")
+{%- endcomment -%}
+{%- assign lang = include.lang | default: "en" -%}
+<ul class="cv-section cv-grants">
+{%- for row in include.rows -%}
+{%- assign d = row.date[lang] | default: row.date.en -%}
+{%- assign agency = row.agency[lang] | default: row.agency.en -%}
+{%- assign program = row.program[lang] | default: row.program.en -%}
+{%- assign title = row.title[lang] | default: row.title.en -%}
+{%- assign amount = row.amount[lang] | default: row.amount.en -%}
+{%- assign extra = "" -%}
+{%- if row.grant_number and row.grant_number != "" -%}{%- assign extra = row.grant_number -%}{%- endif -%}
+{%- if amount and amount != "" -%}
+{%- if extra == "" -%}{%- assign extra = amount -%}
+{%- else -%}{%- assign extra = extra | append: ", " | append: amount -%}{%- endif -%}
+{%- endif -%}
+<li>{% if d and d != "" %}<strong>{{ d }}</strong> {% endif %}
+{%- if lang == "ja" %}{% assign hsep = "　" %}{% else %}{% assign hsep = ", " %}{% endif -%}
+{%- assign head = agency -%}
+{%- if program and program != "" -%}{%- assign head = head | append: hsep | append: program -%}{%- endif -%}
+{{- head | escape_once -}}
+{%- if title and title != "" -%}
+{%- if lang == "ja" %}「{{ title | escape_once }}」{% else %}, &ldquo;{{ title | escape_once }}&rdquo;{% endif -%}
+{%- endif -%}
+{%- if extra != "" %} ({{ extra | escape_once }}){% endif -%}
+</li>
+{%- endfor -%}
+</ul>

@@ -23,8 +23,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D." />
 <meta property="og:description" content="Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D." />
-<link rel="canonical" href="http://localhost:4000/search/" />
-<meta property="og:url" content="http://localhost:4000/search/" />
+<link rel="canonical" href="https://shinichinamba.github.io/search/" />
+<meta property="og:url" content="https://shinichinamba.github.io/search/" />
 <meta property="og:site_name" content="Shinichi Namba" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
@@ -32,7 +32,7 @@
 <meta name="twitter:site" content="@NambaShinichi" />
 <meta name="twitter:creator" content="@NambaShinichi" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Shinichi Namba"},"description":"Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D.","headline":"Search","url":"http://localhost:4000/search/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Shinichi Namba"},"description":"Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D.","headline":"Search","url":"https://shinichinamba.github.io/search/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -55,6 +55,89 @@
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+<style>
+  /* Generated CV sections (see _includes/cv-section.html). */
+  .cv-section { list-style: disc; margin: 0 0 1em 1.25em; padding: 0; }
+  .cv-section li { margin-bottom: .3em; }
+  .profile-bio { margin-bottom: 1.5em; }
+
+  /* Featured Research: each item is rendered by its own jekyll-scholar
+     bibliography tag, so each emits a fresh <ol> that would otherwise restart
+     numbering at "1." for every entry. (Do not write Liquid tag syntax in
+     this file -- even inside a CSS comment it is executed, not quoted.) */
+  .featured-research .bibliography { list-style: none; margin: 0; padding: 0; }
+  .featured-research .featured-item { margin-bottom: 1.75em; }
+  .featured-research .featured-summary { margin: .3em 0 0 0; font-size: .95em; }
+</style>
+<style>
+  .au-toggle {
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 1px dotted currentColor;
+  }
+  .au-less { margin-left: .35em; font-size: .9em; }
+  .abstract-body {
+    margin: .6em 0 0 0;
+    padding: .7em .9em;
+    border-left: 3px solid rgba(0, 0, 0, .18);
+    background: rgba(0, 0, 0, .035);
+    font-size: .93em;
+    line-height: 1.55;
+    text-align: justify;
+  }
+  .btn[aria-expanded="true"] { font-weight: 700; }
+</style>
+<script>
+  (function () {
+    "use strict";
+
+    function setHidden(el, hidden) {
+      if (el) { el.hidden = hidden; }
+    }
+
+    function toggleAuthors(scope, expand) {
+      scope.querySelectorAll(".au-rest").forEach(function (el) {
+        setHidden(el, !expand);
+      });
+      setHidden(scope.querySelector(".au-more"), expand);
+      setHidden(scope.querySelector(".au-less"), !expand);
+      setHidden(scope.querySelector(".au-etal"), expand);
+      setHidden(scope.querySelector(".au-gap"), expand);
+    }
+
+    function handle(target) {
+      var toggle = target.closest(".au-toggle");
+      if (toggle) {
+        var scope = toggle.closest(".authors");
+        if (scope) { toggleAuthors(scope, toggle.classList.contains("au-more")); }
+        return true;
+      }
+      var btn = target.closest(".abstract-toggle");
+      if (btn) {
+        // The abstract lives in the same list item as its button.
+        var item = btn.closest("li") || btn.parentNode;
+        var body = item ? item.querySelector(".abstract-body") : null;
+        if (body) {
+          body.hidden = !body.hidden;
+          btn.setAttribute("aria-expanded", body.hidden ? "false" : "true");
+        }
+        return true;
+      }
+      return false;
+    }
+
+    document.addEventListener("click", function (ev) {
+      if (handle(ev.target)) { ev.preventDefault(); }
+    });
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Enter" && ev.key !== " ") { return; }
+      if (!ev.target.closest || !ev.target.closest(".au-toggle")) { return; }
+      if (handle(ev.target)) { ev.preventDefault(); }
+    });
+  })();
+</script>
+
 
 </head>
 
@@ -73,7 +156,7 @@
   <div class="navigation-wrapper">
     <a href="#menu-toggle" id="menu-toggle">Menu</a>
     <nav id="primary-nav" class="site-nav animated drop">
-      <ul><li><a href="/">Home</a></li><li><a href="/publications/">Publications</a></li><li><a href="/jp/">日本語</a></li></ul>
+      <ul><li><a href="/">Home</a></li><li><a href="/publications/">Publications</a></li><li><a href="/jp/">日本語</a></li><li><a href="/assets/cv/Shinichi_Namba_CV_EN.pdf">CV</a></li></ul>
     </nav>
   </div><!-- /.navigation-wrapper -->
 

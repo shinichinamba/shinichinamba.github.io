@@ -9,11 +9,7 @@ entries_layout: list
 
 ![MyPicture]({{ site.baseurl }}/assets/img/0141.jpg)
 
-> 東京大学大学院医学系研究科遺伝情報学（岡田随象教授）にて助教をしております。
-> ヒトゲノムを対象とした研究を行っており、特にヒト形質の遺伝的構造の解明、疾患予測、創薬を目的としています。
-> 大阪大学大学院医学系研究科遺伝統計学（指導教官：岡田随象教授）にて博士（医学）を取得。
-> 博士課程入学以前は、東京大学大学院医学系研究科細胞情報学（現 国立がんセンター研究所細胞情報学分野）において間野博行教授・河津正人先生のご指導のもと、がんにおけるトランスクリプトーム研究およびメチローム研究を行いました。
-
+{% include profile-bio.html lang="ja" %}
 
 更新情報
 --------
@@ -27,50 +23,59 @@ entries_layout: list
 研究分野
 --------
 
-遺伝統計学 / 集団遺伝学 / がん / ゲノムワイド関連解析 / 選択圧 / ゲノム情報にもとづいた疾患予測・薬剤開発 など
+{{ site.data.profile.research_interests.ja }}
 
 <HR>
 
 職歴・学歴
 ----------
 
-* **2023/10 –** 東京大学大学院医学系研究科遺伝情報学（助教）
-* **2020/4 – 2023/9** 大阪大学大学院医学系研究科遺伝統計学　博士課程
-* **2018/4 – 2020/3** 日本赤十字社医療センター（初期研修医）
-* **2012/4 – 2018/3** 東京大学教養学部理科三類・医学部医学科
+{% comment %}
+  The Japanese page has always listed only the substantive appointments, so
+  invited faculty positions are filtered out here. They remain in the data and
+  still appear on the English page and on both CVs; delete the where_exp to
+  show them here too.
+{% endcomment %}
+{% assign appts = site.data.cv.appointments | where_exp: "a", "a.appointment_type != 'invited'" %}
+{% assign career = appts | concat: site.data.cv.clinical_training | concat: site.data.cv.education | sort: "sort_seq" %}
+{% include cv-section.html rows=career lang="ja" fields="institution,department,field,position,degree" sep="　" nofallback="degree" %}
 
 <HR>
 
 受賞歴
 ------
 
-* **2026/2/4** 井上研究奨励賞
-* **2025/12/19** 日本人類遺伝学会第70回大会　大会最優秀口演賞
+{% include cv-section.html rows=site.data.cv.awards lang="ja" fields="organization,award" sep="　" %}
 
 <HR>
 
 奨学金
 ------
 
-* **2020/4 – 2023/9** 武田科学振興財団　医学部博士課程奨学助成
+{% include cv-section.html rows=site.data.cv.fellowships lang="ja" fields="organization,fellowship" sep="　" %}
 
 <HR>
 
 競争的資金等の研究課題（代表）
 -----------------------------
 
-* **2024/6 –** 日本応用酵素協会　Cardiovascular Innovative Conference に関する研究助成(CVIC)
-* **2024/7 –** AMED GRIFIN 若手課題 「遺伝子–環境相互作用の学術・オミクス横断による個別化医療の実装」
-* **2025/10 –** AMED ゲノム創薬基盤推進研究事業 若手課題 「遺伝子変異の機能性スペクトラム統一的解析と次世代創薬連携による創薬シーズ導出」
+{% assign grants_pi = site.data.cv.grants | where_exp: "g", "g.role == 'PI'" %}
+{% include cv-grants.html rows=grants_pi lang="ja" %}
 
 <HR>
 
 教育歴
 ------
 
-* **2025/4 –** 生化学講義（東京大学　医学部）
-* **2023/10 –** 生化学実習（東京大学　医学部）
-* **2024/4 –** 遺伝情報学各論（東京大学 医学系研究科）
+{% include cv-section.html rows=site.data.cv.teaching lang="ja" fields="course,institution,school" sep="　" %}
+
+<HR>
+
+CV
+--
+
+* [日本語CV (PDF)]({{ site.baseurl }}/assets/cv/Shinichi_Namba_CV_JA.pdf)
+* [English CV (PDF)]({{ site.baseurl }}/assets/cv/Shinichi_Namba_CV_EN.pdf)
 
 <HR>
 

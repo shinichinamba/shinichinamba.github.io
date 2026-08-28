@@ -6,6 +6,13 @@ title: Publications
 \* denotes equal contribution; \*\* denotes (co-)corresponding authors
 
 
+Featured Research
+-----------------
+
+{% include featured-research.html lang="en" %}
+
+<HR>
+
 Preprints
 ---------
 
@@ -24,4 +31,3 @@ Reviews (Japanese)
 ------------------
 
 {% bibliography --file japanese_reviews.bib %}
-

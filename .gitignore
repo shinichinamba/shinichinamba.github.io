@@ -15,3 +15,8 @@ npm-debug.log*
 .Rproj.user
 .Rhistory
 *.Rproj
+build/
+_bibliography/tmp*.bib
+~$*.xlsx
+__pycache__/
+.pytest_cache/

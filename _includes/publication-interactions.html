@@ -1,0 +1,80 @@
+{%- comment -%}
+  Progressive enhancement for the publication lists.
+
+  * The author list is rendered in full by _plugins/jekyll_scholar.rb, with the
+    middle authors inside `.au-rest[hidden]`. Clicking the ellipsis reveals
+    them; nothing is fetched, so it works offline and on a static host.
+  * The abstract is emitted by _layouts/bibtemplate.html when the .bib entry
+    has one, and starts hidden.
+
+  With JavaScript disabled the page still shows the truncated author list and
+  simply omits the toggles, which is the behaviour the site had before.
+{%- endcomment -%}
+<style>
+  .au-toggle {
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 1px dotted currentColor;
+  }
+  .au-less { margin-left: .35em; font-size: .9em; }
+  .abstract-body {
+    margin: .6em 0 0 0;
+    padding: .7em .9em;
+    border-left: 3px solid rgba(0, 0, 0, .18);
+    background: rgba(0, 0, 0, .035);
+    font-size: .93em;
+    line-height: 1.55;
+    text-align: justify;
+  }
+  .btn[aria-expanded="true"] { font-weight: 700; }
+</style>
+<script>
+  (function () {
+    "use strict";
+
+    function setHidden(el, hidden) {
+      if (el) { el.hidden = hidden; }
+    }
+
+    function toggleAuthors(scope, expand) {
+      scope.querySelectorAll(".au-rest").forEach(function (el) {
+        setHidden(el, !expand);
+      });
+      setHidden(scope.querySelector(".au-more"), expand);
+      setHidden(scope.querySelector(".au-less"), !expand);
+      setHidden(scope.querySelector(".au-etal"), expand);
+      setHidden(scope.querySelector(".au-gap"), expand);
+    }
+
+    function handle(target) {
+      var toggle = target.closest(".au-toggle");
+      if (toggle) {
+        var scope = toggle.closest(".authors");
+        if (scope) { toggleAuthors(scope, toggle.classList.contains("au-more")); }
+        return true;
+      }
+      var btn = target.closest(".abstract-toggle");
+      if (btn) {
+        // The abstract lives in the same list item as its button.
+        var item = btn.closest("li") || btn.parentNode;
+        var body = item ? item.querySelector(".abstract-body") : null;
+        if (body) {
+          body.hidden = !body.hidden;
+          btn.setAttribute("aria-expanded", body.hidden ? "false" : "true");
+        }
+        return true;
+      }
+      return false;
+    }
+
+    document.addEventListener("click", function (ev) {
+      if (handle(ev.target)) { ev.preventDefault(); }
+    });
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Enter" && ev.key !== " ") { return; }
+      if (!ev.target.closest || !ev.target.closest(".au-toggle")) { return; }
+      if (handle(ev.target)) { ev.preventDefault(); }
+    });
+  })();
+</script>

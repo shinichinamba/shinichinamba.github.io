@@ -64,7 +64,11 @@ search_full_content: false # can have performance implications for large sites
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-exclude: ["Gemfile", "Gemfile.lock", "README.md", "scripts", ".DS_Store", ".jekyll-cache", "shinichinamba.Rproj", ".Rproj.user/", "src/", "docs/"]
+exclude: ["Gemfile", "Gemfile.lock", "README.md", "scripts", ".DS_Store", ".jekyll-cache",
+          "shinichinamba.Rproj", ".Rproj.user/", "src/", "docs/",
+          # data/ MUST stay excluded: it holds cv_master.xlsx with internal note/source
+          # columns and non-public records. Jekyll copies unknown top-level dirs to _site.
+          "data/", "tests/", "build/", "migration_report.md"]
 
 plugins:
   - jekyll-seo-tag

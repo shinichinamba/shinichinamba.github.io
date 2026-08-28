@@ -1,0 +1,14 @@
+{%- comment -%}
+  Intro blockquote, from _data/profile.yml.
+
+  Emitted as literal HTML rather than a Markdown "> " block: running
+  markdownify inside a blockquote is fragile in kramdown, and the text is a
+  plain paragraph anyway.
+
+  Params: lang ("en" | "ja")
+{%- endcomment -%}
+{%- assign lang = include.lang | default: "en" -%}
+{%- assign bio = site.data.profile.bio_short[lang] | default: site.data.profile.bio_short.en -%}
+{%- if bio and bio != "" -%}
+<blockquote class="profile-bio"><p>{{ bio | escape_once }}</p></blockquote>
+{%- endif -%}

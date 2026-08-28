@@ -19,19 +19,55 @@ module Jekyll
         # highlight authorship
         reference = reference.gsub(/\**Namba, S|難波 真一/u){|c| "<strong>#{$&}</strong>"}
 
-        # custom et al
+        # Author list with an expandable middle.
+        #
+        # The full list is always in the DOM; the authors between the visible
+        # head and the author's own name are wrapped in hidden spans. Clicking
+        # the ellipsis reveals them and swaps "et al." for a collapse link, so
+        # the behaviour needs no server round-trip and degrades to the full
+        # list when JavaScript is off (the spans simply stay as authored).
+        #
+        # The split on ".," follows the CSL output convention: every author is
+        # rendered "Family, I." so ".," separates them. The final pair is
+        # joined by " & " instead, which is why an N-author list yields N-1
+        # chunks and a 7-author list is left untouched.
         def et_al(text)
           author_list = text.split(".,")
           return text if author_list.length <= 6
 
-          authors = author_list[0..5].join(".,") + ". <i>et al.</i>"
-          if not authors.include?("<strong>") then
-            idx = author_list.find_index {|c| c.include?("<strong>")}
-            return authors if idx.nil?
+          self_idx = author_list.find_index { |c| c.include?("<strong>") }
 
-            authors = author_list[0..4].join(".,") + "., ..., " + author_list[idx] + ". <i>et al.</i>"
+          if self_idx.nil? || self_idx <= 5
+            head = author_list[0..5]
+            rest = author_list[6..-1] || []
+            visible = head.join(".,") + "."
+            hidden = rest.empty? ? "" :
+              "<span class=\"au-rest\" hidden>, " + rest.join(".,").sub(/\A\s+/, "") + "</span>"
+            tail = ""
+          else
+            head = author_list[0..4]
+            middle = author_list[5...self_idx]
+            rest = author_list[(self_idx + 1)..-1] || []
+            visible = head.join(".,") + "."
+            hidden = "<span class=\"au-rest\" hidden>, " + middle.join(".,").sub(/\A\s+/, "") + ".</span>"
+            # The ", ..., " gap only makes sense while collapsed; expanded,
+            # a plain ", " takes its place.
+            tail = "<span class=\"au-gap\">, ..., </span>" \
+                   "<span class=\"au-rest\" hidden>, </span>" +
+                   author_list[self_idx].sub(/\A\s+/, "") + "."
+            unless rest.empty?
+              tail += "<span class=\"au-rest\" hidden>, " + rest.join(".,").sub(/\A\s+/, "") + "</span>"
+            end
           end
-          return authors
+
+          more = "<a class=\"au-toggle au-more\" role=\"button\" tabindex=\"0\" " \
+                 "aria-label=\"Show all authors\">[\u2026]</a>"
+          less = "<a class=\"au-toggle au-less\" role=\"button\" tabindex=\"0\" hidden>" \
+                 "[Show fewer authors]</a>"
+          etal = "<span class=\"au-etal\"> <i>et al.</i></span>"
+
+          "<span class=\"authors\">" + visible + hidden + tail + " " + more +
+            etal + " " + less + "</span>"
         end
         reference = reference.gsub(/(.*\.) <a/) { |c| "#{et_al($1)} <a"}
 

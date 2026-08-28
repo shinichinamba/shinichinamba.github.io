@@ -3,3 +3,18 @@
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+<style>
+  /* Generated CV sections (see _includes/cv-section.html). */
+  .cv-section { list-style: disc; margin: 0 0 1em 1.25em; padding: 0; }
+  .cv-section li { margin-bottom: .3em; }
+  .profile-bio { margin-bottom: 1.5em; }
+
+  /* Featured Research: each item is rendered by its own jekyll-scholar
+     bibliography tag, so each emits a fresh <ol> that would otherwise restart
+     numbering at "1." for every entry. (Do not write Liquid tag syntax in
+     this file -- even inside a CSS comment it is executed, not quoted.) */
+  .featured-research .bibliography { list-style: none; margin: 0; padding: 0; }
+  .featured-research .featured-item { margin-bottom: 1.75em; }
+  .featured-research .featured-summary { margin: .3em 0 0 0; font-size: .95em; }
+</style>
+{% include publication-interactions.html %}

@@ -1,0 +1,160 @@
+# CV section definitions.
+#
+# One document per language, a single sequence of sections.
+#
+# Records are filtered by `visible_cv_short`: a row with FALSE there does not
+# appear on the CV at all. (There is no `visible_cv_full` column -- an earlier
+# design repeated every section in a second "complete record" block, which was
+# dropped as redundant.)
+#
+# A section renders only when `enabled` is true, it is not in the profile's
+# `drop_sections`, and it has at least one visible row.
+#
+# `blocks` is still a list of lists so a second block can be reinstated by
+# adding one here; today there is only the main sequence.
+
+sections:
+  header:
+    source: {kind: profile}
+    formatter: header
+    enabled: true
+
+  personal_statements:
+    source: {kind: profile, field: cv_summary}
+    formatter: paragraph
+    enabled: true
+    heading: {en: Personal Statements, ja: 研究概要}
+
+  research_interests:
+    source: {kind: profile, field: research_interests}
+    formatter: paragraph
+    enabled: true
+    heading: {en: Research Interests, ja: 研究分野}
+    # Trailing filler is fine on the website but reads as padding on a CV.
+    strip_trailing: ["など", "...", "…"]
+
+  appointments:
+    source: {kind: sheet, sheet: appointments}
+    formatter: appointment
+    enabled: true
+    heading: {en: Academic Appointments, ja: 職歴}
+
+  clinical_training:
+    source: {kind: sheet, sheet: clinical_training}
+    formatter: clinical
+    enabled: true
+    heading: {en: Clinical Training, ja: 臨床研修}
+
+  education:
+    source: {kind: sheet, sheet: education}
+    formatter: education
+    enabled: true
+    heading: {en: Education, ja: 学歴}
+
+  awards:
+    source: {kind: sheet, sheet: awards}
+    formatter: award
+    enabled: true
+    heading: {en: Honors and Awards, ja: 受賞歴}
+
+  grants:
+    source: {kind: sheet, sheet: grants}
+    formatter: grant
+    enabled: true
+    heading: {en: Research Funding, ja: 競争的資金}
+
+  fellowships:
+    source: {kind: sheet, sheet: fellowships}
+    formatter: fellowship
+    enabled: true
+    heading: {en: Fellowships, ja: 奨学助成}
+
+  invited_talks:
+    source: {kind: sheet, sheet: invited_talks}
+    formatter: talk
+    enabled: true
+    heading: {en: Invited Talks, ja: 招待講演}
+
+  teaching:
+    source: {kind: sheet, sheet: teaching}
+    formatter: teaching
+    enabled: true
+    heading: {en: Teaching Experience, ja: 教育歴}
+
+  publications:
+    source: {kind: bibliography, mode: selected}
+    formatter: publications
+    enabled: true
+    heading: {en: Selected Publications, ja: 主要学術論文}
+
+  public_profiles:
+    source: {kind: profile}
+    formatter: public_profiles
+    enabled: true
+    heading: {en: Public Profiles, ja: 公開プロフィール}
+
+  # The complete list, deliberately last.
+  publications_full:
+    source: {kind: bibliography, mode: full}
+    formatter: publications
+    enabled: true
+    heading: {en: Publications, ja: 学術論文}
+
+  # Data-only: parsed and validated, never rendered on the CV.
+  memberships:
+    source: {kind: sheet, sheet: memberships}
+    formatter: membership
+    enabled: false
+    heading: {en: Professional Memberships, ja: 所属学会}
+
+  reviewing:
+    source: {kind: sheet, sheet: reviewing}
+    formatter: reviewing
+    enabled: false
+    heading: {en: Peer Review Service, ja: 査読活動}
+
+  committees:
+    source: {kind: sheet, sheet: committees}
+    formatter: committee
+    enabled: false
+    heading: {en: Professional Service, ja: 委員会活動}
+
+  patents:
+    source: {kind: sheet, sheet: patents}
+    formatter: patent
+    enabled: false
+    heading: {en: Patents, ja: 特許}
+
+blocks:
+  # The abridged CV, filtered by visible_cv_short.
+  # Career record, selected publications, the narrative sections, the online
+  # identifiers, then the complete publication list.
+  main:
+    en: [header, appointments, clinical_training, education, awards, grants,
+         fellowships, invited_talks, teaching, publications,
+         research_interests, personal_statements, public_profiles,
+         publications_full]
+    ja: [header, appointments, clinical_training, education, awards, grants,
+         fellowships, invited_talks, teaching, publications,
+         research_interests, personal_statements, public_profiles,
+         publications_full]
+
+options:
+  # true folds clinical_training rows into the Japanese 職歴 section
+  ja_merge_clinical_into_appointments: true
+  # a portrait beside the header block; Japanese CV only
+  photo:
+    ja: assets/img/headshot_snamba.jpg
+    en: null
+  # ORCID and researchmap are printed as plain URLs rather than hyperlinks,
+  # so the identifier is readable on paper.
+  plain_text_links: [orcid, researchmap]
+
+  # A hard override: anything listed here is suppressed on the CV whatever
+  # the per-row show_* flags say. Empty on purpose -- amounts and grant
+  # numbers are switched off in cv_master.xlsx itself
+  # (show_amount_cv_full / show_grant_number_cv_full = FALSE), so the
+  # spreadsheet remains the single place that decides. Add "amount" or
+  # "grant_number" here only if you want a guarantee that no spreadsheet
+  # edit can undo, e.g. before sharing the CV widely.
+  never_show: []

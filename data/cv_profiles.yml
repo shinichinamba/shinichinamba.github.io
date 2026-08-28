@@ -1,0 +1,30 @@
+# Authored input. CV profile definitions.
+profiles:
+  en:
+    language: en
+    variant: short
+    publications: both
+    publish_to_site: true
+    output: Shinichi_Namba_CV_EN
+  ja:
+    language: ja
+    variant: short
+    publications: both
+    publish_to_site: true
+    output: Shinichi_Namba_CV_JA
+  en_full:
+    language: en
+    variant: full
+    publications: both
+    publish_to_site: false
+    output: Shinichi_Namba_CV_EN_full
+  ja_full:
+    language: ja
+    variant: full
+    publications: both
+    publish_to_site: false
+    output: Shinichi_Namba_CV_JA_full
+bibliography:
+  peer_reviewed: _bibliography/publications.bib
+  preprints: _bibliography/preprints.bib
+  reviews_ja: _bibliography/japanese_reviews.bib
