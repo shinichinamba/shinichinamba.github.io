@@ -69,11 +69,21 @@ sections:
     enabled: true
     heading: {en: Fellowships, ja: 奨学助成}
 
+  # One sheet, two sections: talks given at conferences and society meetings
+  # are listed apart from seminars given at a single institution or lab.
+  # `seminar` is the only talk_type that means the latter, so the conference
+  # section excludes it rather than naming every other type.
   invited_talks:
-    source: {kind: sheet, sheet: invited_talks}
+    source: {kind: sheet, sheet: invited_talks, exclude: {talk_type: [seminar]}}
     formatter: talk
     enabled: true
-    heading: {en: Invited Talks, ja: 招待講演}
+    heading: {en: Invited Conference Talks, ja: 学会招待講演}
+
+  research_seminars:
+    source: {kind: sheet, sheet: invited_talks, where: {talk_type: [seminar]}}
+    formatter: talk
+    enabled: true
+    heading: {en: Invited Research Seminars, ja: 招待研究セミナー}
 
   teaching:
     source: {kind: sheet, sheet: teaching}
@@ -93,7 +103,7 @@ sections:
     enabled: true
     heading: {en: Public Profiles, ja: 公開プロフィール}
 
-  # The complete list, deliberately last.
+  # The complete list, after the selected one.
   publications_full:
     source: {kind: bibliography, mode: full}
     formatter: publications
@@ -127,17 +137,18 @@ sections:
 
 blocks:
   # The abridged CV, filtered by visible_cv_short.
-  # Career record, selected publications, the narrative sections, the online
-  # identifiers, then the complete publication list.
+  # The narrative opens the document, then the career record, the selected
+  # publications, the complete publication list, the talks, and finally the
+  # online identifiers.
   main:
-    en: [header, appointments, clinical_training, education, awards, grants,
-         fellowships, invited_talks, teaching, publications,
-         research_interests, personal_statements, public_profiles,
-         publications_full]
-    ja: [header, appointments, clinical_training, education, awards, grants,
-         fellowships, invited_talks, teaching, publications,
-         research_interests, personal_statements, public_profiles,
-         publications_full]
+    en: [header, research_interests, personal_statements,
+         appointments, clinical_training, education, awards, grants,
+         fellowships, teaching, publications,
+         publications_full, invited_talks, research_seminars, public_profiles]
+    ja: [header, research_interests, personal_statements,
+         appointments, clinical_training, education, awards, grants,
+         fellowships, teaching, publications,
+         publications_full, invited_talks, research_seminars, public_profiles]
 
 options:
   # true folds clinical_training rows into the Japanese 職歴 section

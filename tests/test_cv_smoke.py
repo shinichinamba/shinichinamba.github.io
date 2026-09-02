@@ -73,17 +73,24 @@ class TestDocumentModel(unittest.TestCase):
         self.assertTrue(pub <= full, pub - full)
         pg = next(s for s in self.doc("en").sections if s.key == "grants")
         fg = next(s for s in self.doc("en_full").sections if s.key == "grants")
-        self.assertLess(len(pg.entries), len(fg.entries))
+        # Every grant is on the published CV by choice, so the two copies can
+        # hold the same rows; what the private copy adds is the gated values
+        # (amounts, grant numbers), covered by the show_* tests below.
+        self.assertLessEqual(len(pg.entries), len(fg.entries))
         self.assertEqual(len(fg.entries), len(self.master["grants"].records))
 
     def test_section_order(self):
-        """Career record, selected publications, narrative, profiles, list."""
+        """Narrative, career record, publications, talks, profiles."""
         for name in self.profiles:
             keys = [s.key for s in self.doc(name).sections]
             self.assertEqual(
+                keys[:3],
+                ["header", "research_interests", "personal_statements"],
+                f"{name}: the narrative must open the CV")
+            self.assertEqual(
                 keys[-5:],
-                ["publications", "research_interests", "personal_statements",
-                 "public_profiles", "publications_full"],
+                ["publications", "publications_full", "invited_talks",
+                 "research_seminars", "public_profiles"],
                 f"{name}: unexpected tail")
             self.assertLess(keys.index("teaching"), keys.index("publications"))
 
@@ -97,8 +104,13 @@ class TestDocumentModel(unittest.TestCase):
         sel = next(s for s in doc.sections if s.key == "publications")
         full = next(s for s in doc.sections if s.key == "publications_full")
         self.assertEqual(len(sel.entries), len(self.bib.selected()))
+        # Counted from the bibliography rather than pinned; the assertion
+        # that matters is the subsection order, not today's totals.
         self.assertEqual([len(x.entries) for x in full.subsections],
-                         [6, 40, 2], "preprints must come first")
+                         [len(self.bib.groups["preprints"]),
+                          len(self.bib.groups["publications"]),
+                          len(self.bib.groups["reviews_ja"])],
+                         "preprints must come first")
 
     def test_memberships_are_not_on_the_cv(self):
         for name in ("en", "ja"):
@@ -113,6 +125,14 @@ class TestDocumentModel(unittest.TestCase):
         self.assertIn("Namba S*", text)
         self.assertNotIn("\u266fNamba", text)
         self.assertNotIn("*Namba", text)
+
+    def test_paragraph_sections_have_no_trailing_whitespace(self):
+        """A folded YAML scalar keeps a newline that becomes a <w:br/>."""
+        for name in self.profiles:
+            for key in ("research_interests", "personal_statements"):
+                sec = next(s for s in self.doc(name).sections if s.key == key)
+                text = plain(list(sec.entries[0].body))
+                self.assertEqual(text, text.strip(), f"{name}/{key}")
 
     def test_research_interests_has_no_trailing_filler(self):
         for name, filler in (("ja", "など"), ("en", "...")):
@@ -204,9 +224,33 @@ class TestDocumentModel(unittest.TestCase):
                       " ".join(plain(list(e.body)) for e in appts.entries))
 
     def test_empty_sheets_produce_no_section(self):
+        """A sheet with no rows drops its section rather than printing a
+        bare heading. Emptied here instead of relying on a sheet that
+        happens to be unpopulated today."""
+        import copy
+        master = copy.deepcopy(self.master)
+        master["invited_talks"].records = []
         for name in self.profiles:
-            self.assertNotIn("invited_talks",
-                             {s.key for s in self.doc(name).sections})
+            keys = {s.key for s in build_document(
+                master, self.profile, self.bib, self.profiles[name],
+                self.cfg).sections}
+            self.assertNotIn("invited_talks", keys)
+            self.assertNotIn("research_seminars", keys)
+
+    def test_talks_split_by_type(self):
+        """Conference talks and research seminars are separate sections."""
+        for name in ("en", "ja"):
+            doc = self.doc(name)
+            conf = next(s for s in doc.sections if s.key == "invited_talks")
+            sem = next(s for s in doc.sections if s.key == "research_seminars")
+            types = {r.values.get("talk_type")
+                     for r in self.master["invited_talks"].records}
+            self.assertEqual(len(sem.entries),
+                             sum(r.values.get("talk_type") == "seminar"
+                                 for r in self.master["invited_talks"].records))
+            self.assertEqual(len(conf.entries) + len(sem.entries),
+                             len(self.master["invited_talks"].records))
+            self.assertIn("seminar", types)
 
 
 @unittest.skipUnless(EN_PDF.exists(), "run `make -C scripts cv` first")

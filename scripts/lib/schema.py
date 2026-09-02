@@ -63,7 +63,8 @@ IDENT = (
 DATE_RANGE = (
     Column("start_date", "date", web=True),
     Column("end_date", "date", web=True),
-    Column("ongoing", "bool", default=False, web=True),
+    # No `ongoing` column: it is derived from end_date (lib.dates.is_ongoing),
+    # so the two can never contradict each other.
 )
 
 ADMIN = (
@@ -72,11 +73,6 @@ ADMIN = (
     #: Gates the abridged CV block only. The full block shows every row, so
     #: there is deliberately no visible_cv_full column.
     Column("visible_cv_short", "bool", required=True),
-    # Internal bookkeeping only -- never published, and safe to delete from
-    # the workbook if you do not want to maintain them.
-    Column("note", "str", optional=True),
-    Column("source", "str", optional=True),
-    Column("verified", "bool", default=False, optional=True),
 )
 
 APPOINTMENT_TYPES = ("primary", "invited", "adjunct", "visiting", "other")

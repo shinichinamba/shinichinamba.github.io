@@ -3,20 +3,20 @@
 - bibkey: Namba_2026
   order: 1
   summary:
-    en: A cross-population survey of gene-environment interactions across biobanks. The study assembles interaction effects on a common footing so that they can be compared between populations rather than studied one cohort at a time.
-    ja: 複数のバイオバンクを横断して遺伝子–環境相互作用を体系的に解析した研究。相互作用効果を共通の枠組みで整理することで、単一集団ごとの解析では困難だった集団間比較を可能にした。
+    en: A gene–environment interaction atlas across phenotypes, environments, and populations, showing the importance of gene–environment interactions for understanding the biology underlying dynamic genetic effects and informing precision medicine and drug development.
+    ja: 形質・環境・集団を横断する遺伝子–環境交互作用アトラスを構築し、遺伝的効果の動的な変化をもたらす生物学的メカニズムの理解および、個別化医療、創薬における遺伝子–環境交互作用の重要性を示した。
 - bibkey: Namba_2024
   order: 2
   summary:
-    en: A comparison of polygenic score methods applied to embryo selection. Different methods rank the same embryos differently, which bears directly on how such scores should be interpreted in a reproductive setting.
-    ja: 胚選択に用いられる多遺伝子スコアの手法間比較を行った研究。同一の胚に対しても手法によって順位付けが一致しないことを示し、生殖医療の文脈におけるスコア解釈の前提に検討を加えた。
+    en: Focusing on embryo selection based on genetically predicted future traits in in vitro fertilization, we showed that embryo rankings varied substantially across scoring methods and due to random fluctuations in score construction.
+    ja: 体外受精において、ポリジェニックスコアによって胚の将来の形質を予測する胚選択サービスが提供されている現状に着目し、スコア構築手法および構築時のランダムな変動によって胚の順位付けが大きく異なることを示した。
 - bibkey: cancerPRS_2022
   order: 3
   summary:
-    en: A pan-cancer analysis linking common germline risk variants to somatic alterations and clinical features, connecting inherited risk with the tumour changes and presentation seen in patients.
-    ja: 生殖細胞系列の一般的なリスク変異が、体細胞変異および臨床像とどのように関連するかを複数のがん種にわたって解析した研究。遺伝的リスクと腫瘍側の変化を結びつけた。
+    en: A pan-cancer analysis of germline–somatic associations, which showed that patients with a higher genetic risk of cancer tend to develop cancer at a younger age and with fewer somatic mutations and somatic copy-number alterations.
+    ja: 生殖細胞系列の遺伝子多型と体細胞変異との関連をがん種横断的に解析し、遺伝的ながんリスクが高い患者では発症年齢が比較的若く、体細胞変異および体細胞コピー数変異が比較的少ない段階で発症することを報告した。
 - bibkey: GBMI_DrugDiscov_2022
   order: 4
   summary:
-    en: A practical guideline for genomics-driven drug discovery in the setting of global biobank meta-analysis, describing how large-scale multi-ancestry association results can be turned into candidate drug targets.
-    ja: 国際的なバイオバンク・メタ解析を前提としたゲノム創薬の実践的指針を示した論文。大規模かつ多民族の関連解析結果を創薬標的の候補へつなげる手順を整理した。
+    en: Developing and validating a practical framework for genomics-driven drug discovery in the era of cross-biobank GWAS meta-analyses that integrates association results with multi-omics data to identify therapeutic targets and candidate drugs.
+    ja: 国際バイオバンクGWASメタ解析の時代において、大規模かつ多集団の関連解析結果をオミクス情報と統合解析することにより、創薬標的および薬剤候補を抽出するゲノム創薬の実践的手法を提案し、有効性を検証した。

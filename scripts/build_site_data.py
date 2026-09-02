@@ -24,7 +24,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-from lib.dates import format_range  # noqa: E402
+from lib.dates import format_range, is_ongoing  # noqa: E402
 from lib.display import format_amount  # noqa: E402
 from lib.emit import write_yaml  # noqa: E402
 from lib.records import Dataset, Record, record_sort_seq, sort_records  # noqa: E402
@@ -37,8 +37,7 @@ GENERATOR = "scripts/build_site_data.py"
 OUT_DIR = REPO / "_data" / "cv"
 
 #: never leave the spreadsheet
-PRIVATE = {"note", "source", "verified", "sort_order",
-           "visible_web", "visible_cv_short", "visible_cv_full"}
+PRIVATE = {"sort_order", "visible_web", "visible_cv_short", "visible_cv_full"}
 
 
 def row_for_web(ds: Dataset, r: Record) -> dict:
@@ -50,9 +49,12 @@ def row_for_web(ds: Dataset, r: Record) -> dict:
     primary = ds.primary_date(r)
     start = r.values.get("start_date", primary)
     end = r.values.get("end_date")
-    ongoing = bool(r.values.get("ongoing"))
+    # Derived, not authored: see lib.dates.is_ongoing. Single-date sheets
+    # have no end_date column and are never ongoing.
+    ranged = "end_date" in {c.name for c in sheet.columns}
+    ongoing = ranged and is_ongoing(end)
     out["start_date"] = (start or primary).iso() if (start or primary) else None
-    if "end_date" in {c.name for c in sheet.columns}:
+    if ranged:
         out["end_date"] = end.iso() if end else None
         out["ongoing"] = ongoing
     out["date"] = {

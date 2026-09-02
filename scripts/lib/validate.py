@@ -71,23 +71,6 @@ def _date_order(ctx: Ctx, rep: Report) -> None:
                           f"end_date {e.iso()} precedes start_date {s.iso()}")
 
 
-@rule("W-ONGOING-END", "ongoing rows that also carry an end_date")
-def _ongoing_end(ctx: Ctx, rep: Report) -> None:
-    """A grant can be running now AND have a scheduled end date.
-
-    The spec listed this combination as an error, but that reading does not
-    survive contact with real funding records, so it is a warning: when an
-    end_date is present it wins for display, and `ongoing` just records that
-    the award is currently active.
-    """
-    for ds in ctx.master.values():
-        for r in ds.records:
-            if r.values.get("ongoing") and r.values.get("end_date") is not None:
-                rep.warn("W-ONGOING-END", r.loc,
-                         "ongoing=TRUE and end_date is set; the end date is "
-                         "what will be displayed")
-
-
 @rule("E-FEATURED-KEY", "every featured bibkey must resolve")
 def _featured_keys(ctx: Ctx, rep: Report) -> None:
     if ctx.bib is None:
@@ -139,18 +122,6 @@ def _required_bilingual(ctx: Ctx, rep: Report) -> None:
                     rep.error("E-REQUIRED", r.loc,
                               f"{col.name} is required but both "
                               f"{col.name}_ja and {col.name}_en are empty")
-
-
-@rule("W-UNVERIFIED", "records should be checked against a primary source")
-def _unverified(ctx: Ctx, rep: Report) -> None:
-    for ds in ctx.master.values():
-        # Deleting the column is a deliberate opt-out of tracking this, so
-        # warning on every row would be pure noise.
-        if "verified" not in ds.present_columns:
-            continue
-        for r in ds.records:
-            if not r.values.get("verified"):
-                rep.warn("W-UNVERIFIED", r.loc, f"{r.id}: verified=FALSE")
 
 
 @rule("W-ALL-HIDDEN", "a record hidden everywhere is probably a mistake")

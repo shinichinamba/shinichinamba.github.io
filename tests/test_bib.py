@@ -82,17 +82,32 @@ class TestAuthors(unittest.TestCase):
         self.assertTrue(a[0].corr)   # marker merged onto the first occurrence
 
 
+#: group name -> the .bib file it is loaded from
+GROUP_FILES = {"publications": "publications.bib",
+               "preprints": "preprints.bib",
+               "reviews_ja": "japanese_reviews.bib"}
+
+
+def _at_entries(path):
+    """Every line that opens a BibTeX entry, leading whitespace and all."""
+    text = path.read_text(encoding="utf-8")
+    return [ln for ln in text.splitlines() if ln.lstrip().startswith("@")]
+
+
 class TestLoading(unittest.TestCase):
     def test_no_duplicate_keys(self):
         bib = Bibliography.load(BIB)
-        self.assertEqual(len(bib.all), 48)
-        self.assertEqual(len(bib.by_key), 48)
+        total = sum(len(_at_entries(BIB / f)) for f in GROUP_FILES.values())
+        self.assertEqual(len(bib.all), total)
+        self.assertEqual(len(bib.by_key), total)
 
     def test_counts_per_file(self):
+        """Counted from the files rather than pinned, so adding a paper
+        does not fail the suite; a loader that drops an entry still does."""
         bib = Bibliography.load(BIB)
-        self.assertEqual(len(bib.groups["publications"]), 40)
-        self.assertEqual(len(bib.groups["preprints"]), 6)
-        self.assertEqual(len(bib.groups["reviews_ja"]), 2)
+        for group, fname in GROUP_FILES.items():
+            self.assertEqual(len(bib.groups[group]),
+                             len(_at_entries(BIB / fname)), group)
 
     def test_bare_unbraced_status_value(self):
         bib = Bibliography.load(BIB)
@@ -112,8 +127,9 @@ class TestLoading(unittest.TestCase):
         p.unlink()
 
     def test_raw_keys_sees_leading_space_entries(self):
-        text = (BIB / "publications.bib").read_text(encoding="utf-8")
-        self.assertEqual(len(raw_keys(text)), 40)
+        path = BIB / "publications.bib"
+        text = path.read_text(encoding="utf-8")
+        self.assertEqual(len(raw_keys(text)), len(_at_entries(path)))
 
     def test_self_matches_most_entries(self):
         bib = Bibliography.load(BIB)

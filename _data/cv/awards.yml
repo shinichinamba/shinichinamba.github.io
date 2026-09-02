@@ -48,3 +48,15 @@
   organization:
     en: Graduate School of Medicine, The University of Osaka
     ja: 大阪大学大学院医学系研究科
+- id: ashg_reviewers_choice_2020
+  start_date: '2020-10-27'
+  date:
+    en: Oct 27, 2020
+    ja: 2020/10/27
+  sort_seq: -20201027000
+  award:
+    en: Reviewer's Choice Abstract
+    ja: Reviewer's Choice Abstract
+  organization:
+    en: American Society of Human Genetics Annual Meeting 2020
+    ja: アメリカ人類遺伝学会2020年会

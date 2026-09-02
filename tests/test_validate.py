@@ -1,5 +1,6 @@
 """The validator must refuse bad input loudly."""
 import shutil, subprocess, sys, tempfile, unittest
+from datetime import date
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
@@ -9,7 +10,7 @@ import openpyxl  # noqa: E402
 from lib.records import load_master  # noqa: E402
 from lib.report import Report  # noqa: E402
 from lib.validate import Ctx, validate_all  # noqa: E402
-from lib.dates import PartialDate, format_range  # noqa: E402
+from lib.dates import PartialDate, format_range, is_ongoing  # noqa: E402
 
 
 def codes(rep):
@@ -61,13 +62,13 @@ class TestValidation(unittest.TestCase):
         with BrokenWorkbook("education", "end_date", 2, "2019-01") as p:
             self.assertIn("E-DATE-ORDER", codes(check(p)))
 
-    def test_ongoing_with_end_date_is_only_a_warning(self):
-        # A grant can be running now and still have a scheduled end date, so
-        # this combination warns rather than failing the build.
+    def test_future_end_date_is_not_a_finding(self):
+        # A scheduled end date that has not arrived is simply an ongoing
+        # record now; there is no ongoing column left to contradict it.
         with BrokenWorkbook("appointments", "end_date", 2, "2030-01") as p:
             c = codes(check(p))
-            self.assertIn("W-ONGOING-END", c)
-            self.assertNotIn("E-ONGOING-END", c)
+            self.assertNotIn("W-ONGOING-END", c)
+            self.assertNotIn("E-DATE-ORDER", c)
 
     def test_bool_column_rejects_string(self):
         # data/README.md requires literal TRUE/FALSE, so even the text
@@ -138,6 +139,35 @@ class TestDateOrderPrecision(unittest.TestCase):
     def test_range_uses_coarser_precision(self):
         s = format_range(PartialDate(2020, 3, 15), PartialDate(2021), False, "en")
         self.assertEqual(s, "2020 – 2021")
+
+
+class TestOngoing(unittest.TestCase):
+    """`ongoing` is derived from end_date, never authored."""
+
+    TODAY = date(2026, 9, 2)
+
+    def test_no_end_date_is_ongoing(self):
+        self.assertTrue(is_ongoing(None, self.TODAY))
+
+    def test_future_end_date_is_ongoing(self):
+        self.assertTrue(is_ongoing(PartialDate(2028, 3), self.TODAY))
+
+    def test_past_end_date_has_ended(self):
+        self.assertFalse(is_ongoing(PartialDate(2026, 3), self.TODAY))
+
+    def test_end_month_runs_to_its_last_day(self):
+        # 2026-09 covers today, so the record has not ended yet.
+        self.assertTrue(is_ongoing(PartialDate(2026, 9), self.TODAY))
+
+    def test_ongoing_hides_a_scheduled_end_date(self):
+        s = format_range(PartialDate(2026, 4), PartialDate(2028, 3), True, "en")
+        self.assertEqual(s, "Apr 2026 –")
+        j = format_range(PartialDate(2026, 4), PartialDate(2028, 3), True, "ja")
+        self.assertEqual(j, "2026/4 –")
+
+    def test_ended_range_still_shows_both_ends(self):
+        s = format_range(PartialDate(2023, 12), PartialDate(2026, 3), False, "en")
+        self.assertEqual(s, "Dec 2023 – Mar 2026")
 
 
 if __name__ == "__main__":

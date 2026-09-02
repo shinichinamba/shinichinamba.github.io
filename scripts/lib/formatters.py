@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Callable
 
-from .dates import format_range
+from .dates import format_range, is_ongoing
 from .display import format_amount, join, quote
 from .model import Entry, Run
 from .records import Dataset, Record
@@ -44,7 +44,11 @@ def _date_runs(ds: Dataset, r: Record, lang: str) -> tuple[Run, ...]:
     primary = ds.primary_date(r)
     start = r.values.get("start_date", primary) or primary
     end = r.values.get("end_date")
-    text = format_range(start, end, bool(r.values.get("ongoing")), lang)
+    # Only sheets that record a range can be ongoing. On a single-date sheet
+    # such as awards the absent end date means "not a range", not "still
+    # running", and an open dash there would be wrong.
+    ranged = any(c.name == "end_date" for c in ds.sheet.columns)
+    text = format_range(start, end, ranged and is_ongoing(end), lang)
     return (Run(text),) if text else ()
 
 
@@ -166,9 +170,10 @@ def fmt_talk(ds, r, lang, opts=None):
     else:
         body = join([quote(title, lang) if title else None, event, loc], lang)
     ttype = r.values.get("talk_type")
-    if ttype in ("keynote", "symposium"):
-        label = {"keynote": ("Keynote", "基調講演"),
-                 "symposium": ("Symposium", "シンポジウム")}[ttype]
+    # Only a keynote is called out. "symposium" used to be labelled too, but
+    # every talk in the conference section is one, so the tag said nothing.
+    if ttype == "keynote":
+        label = ("Keynote", "基調講演")
         body += f"（{label[1]}）" if lang == "ja" else f" ({label[0]})"
     return _entry(ds, r, lang, body)
 

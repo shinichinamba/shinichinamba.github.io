@@ -9,7 +9,7 @@
     ja: 2026/4 –
   sort_seq: -20260401000
   course:
-    en: Introduction to Medicine Seminar
+    en: Introduction to Medicine
     ja: 医学に接する
   activity_type: seminar
   institution:
@@ -45,7 +45,7 @@
     ja: 2024/4 –
   sort_seq: -20240401000
   course:
-    en: Advanced Genetic Informatics
+    en: Advanced Genome Informatics
     ja: 遺伝情報学各論
   activity_type: lecture
   institution:

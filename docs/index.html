@@ -23,8 +23,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D." />
 <meta property="og:description" content="Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D." />
-<link rel="canonical" href="https://shinichinamba.github.io/" />
-<meta property="og:url" content="https://shinichinamba.github.io/" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Shinichi Namba" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
@@ -32,7 +32,7 @@
 <meta name="twitter:site" content="@NambaShinichi" />
 <meta name="twitter:creator" content="@NambaShinichi" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Shinichi Namba"},"description":"Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D.","headline":"Shinichi Namba","name":"Shinichi Namba","url":"https://shinichinamba.github.io/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Shinichi Namba"},"description":"Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D.","headline":"Shinichi Namba","name":"Shinichi Namba","url":"http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -67,7 +67,14 @@
      this file -- even inside a CSS comment it is executed, not quoted.) */
   .featured-research .bibliography { list-style: none; margin: 0; padding: 0; }
   .featured-research .featured-item { margin-bottom: 1.75em; }
-  .featured-research .featured-summary { margin: .3em 0 0 0; font-size: .95em; }
+  /* The summary must read as belonging to the citation above it, so the gap
+     above it is closed while the one below (featured-item's own bottom
+     margin) is left alone. With equal gaps the summary looked as if it could
+     belong to either neighbour. Here the summary, not the list item, closes
+     the entry, so the item's separation (set in publication-interactions)
+     would only reopen that gap. */
+  .featured-research .bibliography li { margin-bottom: 0; }
+  .featured-research .featured-summary { margin: .25em 0 0 0; font-size: .95em; }
 </style>
 <style>
   .au-toggle {
@@ -76,8 +83,15 @@
     border-bottom: 1px dotted currentColor;
   }
   .au-less { margin-left: .35em; font-size: .9em; }
+  /* An abstract belongs to the entry it opens from, so it must sit tight
+     under that citation and let the gap fall below it. The citation
+     paragraph used to carry the entry separation, which pushed an expanded
+     abstract away from its own entry and left it touching the next one; the
+     separation therefore lives on the list item instead. */
+  .bibliography li > p { margin-bottom: 0; }
+  .bibliography li { margin-bottom: 1.5em; }
   .abstract-body {
-    margin: .6em 0 0 0;
+    margin: 0;
     padding: .7em .9em;
     border-left: 3px solid rgba(0, 0, 0, .18);
     background: rgba(0, 0, 0, .035);
@@ -193,14 +207,14 @@
 
 <h2 id="news">News</h2>
 <ul class="notice--accent">
-  <li><strong>Jun 9, 2026</strong>	Updated the publication list!</li>
+  <li><strong>Sep 3, 2026</strong>	Updated the publication list!</li>
   <li><strong>Oct 16, 2022</strong>	Started my homepage!</li>
 </ul>
 
 <hr />
 
 <h2 id="research-interests">Research Interests</h2>
-<p>Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygenic Score / Drug discovery …</p>
+<p>Statistical Genetics / Population Genomics / Computational Biology / Cancer / Precision medicine / Drug discovery</p>
 
 <hr />
 
@@ -210,13 +224,13 @@
 
 <hr />
 
-<h2 id="awards">Awards</h2>
-<ul class="cv-section "><li><strong>Feb 4, 2026</strong> Inoue Research Award for Young Scientists, Inoue Foundation for Science</li><li><strong>Dec 19, 2025</strong> Best Oral Presentation Award, 70th Annual Meeting, Japanese Society of Human Genetics</li><li><strong>Oct 10, 2024</strong> Travel Award, ESHG Annual Meeting 2024, Japanese Society of Human Genetics</li><li><strong>Mar 31, 2024</strong> Outstanding Doctoral Student Award, Graduate School of Medicine, The University of Osaka</li></ul>
+<h2 id="education">Education</h2>
+<ul class="cv-section "><li><strong>Apr 2020 – Sep 2023</strong> Ph.D. (Medicine), Department of Statistical Genetics, Graduate School of Medicine, The University of Osaka</li><li><strong>Apr 2012 – Mar 2018</strong> M.D., Faculty of Medicine, The University of Tokyo</li></ul>
 
 <hr />
 
-<h2 id="education">Education</h2>
-<ul class="cv-section "><li><strong>Apr 2020 – Sep 2023</strong> Ph.D. (Medicine), Statistical Genetics, Division of Medicine, Graduate School of Medicine, The University of Osaka</li><li><strong>Apr 2012 – Mar 2018</strong> M.D., School of Medicine, Faculty of Medicine, The University of Tokyo</li></ul>
+<h2 id="awards">Awards</h2>
+<ul class="cv-section "><li><strong>Feb 4, 2026</strong> Inoue Research Award for Young Scientists, Inoue Foundation for Science</li><li><strong>Dec 19, 2025</strong> Best Oral Presentation Award, 70th Annual Meeting, Japanese Society of Human Genetics</li><li><strong>Oct 10, 2024</strong> Travel Award, ESHG Annual Meeting 2024, Japanese Society of Human Genetics</li><li><strong>Mar 31, 2024</strong> Outstanding Doctoral Student Award, Graduate School of Medicine, The University of Osaka</li><li><strong>Oct 27, 2020</strong> Reviewer&#39;s Choice Abstract, American Society of Human Genetics Annual Meeting 2020</li></ul>
 
 <hr />
 
@@ -225,13 +239,14 @@
 
 <hr />
 
-<h2 id="grants">Grants</h2>
-<ul class="cv-section cv-grants"><li><strong>Apr 2026 – Mar 2028</strong> Japan Society for the Promotion of Science (JSPS), Grant-in-Aid for Early-Career Scientists, &ldquo;Deep learning-based elucidation of the genetic architecture of human lipid metabolism&rdquo;</li><li><strong>Apr 2026 – Mar 2027</strong> The University of Tokyo Pandemic Preparedness, Infection, and Advanced Research Center (UTOPIA), Grant in Aid for Young Scientists, &ldquo;Implementation of genome-based drug discovery targeting severe and prolonged infectious diseases&rdquo;</li><li><strong>Oct 2025 – Mar 2028</strong> Japan Agency for Medical Research and Development (AMED), Practical Research Project for Rare/Intractable Diseases, &ldquo;All-Japan Cardiomyopathy Genome Omics Digital Cohort Study&rdquo;</li><li><strong>Oct 2025 – Mar 2028</strong> Japan Agency for Medical Research and Development (AMED), Genome-based Drug Discovery Program, &ldquo;Establishment of drug candidates through integrative analysis of the functional spectrum of genetic mutations and interdisciplinary collaboration of next-generation drug discovery fields&rdquo;</li><li><strong>Oct 2025 – Mar 2028</strong> Japan Agency for Medical Research and Development (AMED), Medical Research Support Program, &ldquo;Elucidating the pathophysiology of cardiometabolic diseases through genetic analyses and omics integration&rdquo;</li><li><strong>Jul 2024 – Mar 2027</strong> Japan Agency for Medical Research and Development (AMED), Advanced Genome Research and Bioinformatics Study to Facilitate Medical Innovation, &ldquo;A trans-disciplinary and trans-omics study of gene–environment interactions towards genomics-driven personalized medicine&rdquo;</li><li><strong>Jun 2024 –</strong> Japan Foundation for Applied Enzymology, Grants related to Cardiovascular Innovative Conference, &ldquo;Genomics-driven personalized medicine and drug discovery by elucidating gene–environment interactions for cardiovascular diseases&rdquo;</li><li><strong>Dec 2023 – Mar 2026</strong> Japan Agency for Medical Research and Development (AMED), Research and Development Program for Bridging Genomic Research to Drug Discovery and Other Outcomes, &ldquo;Elucidating the Trajectory of Cerebrovascular Disorders through Integrated Genomic Analysis and Hemodynamic Simulation for Clinical Applications&rdquo;</li><li><strong>Dec 2023 – Mar 2026</strong> Japan Agency for Medical Research and Development (AMED), Research and Development Program for Bridging Genomic Research to Drug Discovery and Other Outcomes, &ldquo;Digital omics to elucidate mechanisms of stress responses in heart failure for precision medicine&rdquo;</li></ul>
+<h2 id="grants-as-principal-investigator">Grants (as Principal Investigator)</h2>
+
+<ul class="cv-section cv-grants"><li><strong>Apr 2026 –</strong> Japan Society for the Promotion of Science (JSPS), Grant-in-Aid for Early-Career Scientists, &ldquo;Deep learning-based elucidation of the genetic architecture of human lipid metabolism&rdquo;</li><li><strong>Apr 2026 –</strong> The University of Tokyo Pandemic Preparedness, Infection, and Advanced Research Center (UTOPIA), Grant in Aid for Young Scientists, &ldquo;Implementation of genome-based drug discovery targeting severe and prolonged infectious diseases&rdquo;</li><li><strong>Oct 2025 –</strong> Japan Agency for Medical Research and Development (AMED), Genome-based Drug Discovery Program, &ldquo;Establishment of drug candidates through integrative analysis of the functional spectrum of genetic mutations and interdisciplinary collaboration of next-generation drug discovery fields&rdquo;</li><li><strong>Oct 2025 –</strong> Japan Agency for Medical Research and Development (AMED), Medical Research Support Program, &ldquo;Elucidating the pathophysiology of cardiometabolic diseases through genetic analyses and omics integration&rdquo;</li><li><strong>Jul 2024 –</strong> Japan Agency for Medical Research and Development (AMED), Advanced Genome Research and Bioinformatics Study to Facilitate Medical Innovation, &ldquo;A trans-disciplinary and trans-omics study of gene–environment interactions towards genomics-driven personalized medicine&rdquo;</li><li><strong>Jun 2024 –</strong> Japan Foundation for Applied Enzymology, Grants related to Cardiovascular Innovative Conference, &ldquo;Genomics-driven personalized medicine and drug discovery by elucidating gene–environment interactions for cardiovascular diseases&rdquo;</li></ul>
 
 <hr />
 
 <h2 id="teaching-experience">Teaching Experience</h2>
-<ul class="cv-section "><li><strong>Apr 2026 –</strong> Introduction to Medicine Seminar, Faculty of Medicine, The University of Tokyo</li><li><strong>Apr 2025 –</strong> Biochemistry (Lecture), Faculty of Medicine, The University of Tokyo</li><li><strong>Apr 2024 –</strong> Advanced Genetic Informatics, Graduate School of Medicine, The University of Tokyo</li><li><strong>Oct 2023 –</strong> Biochemistry (Laboratory Course), Faculty of Medicine, The University of Tokyo</li><li><strong>Apr 2020 – Sep 2023</strong> Clinical Genetics, Faculty of Medicine, The University of Osaka</li></ul>
+<ul class="cv-section "><li><strong>Apr 2026 –</strong> Introduction to Medicine, Faculty of Medicine, The University of Tokyo</li><li><strong>Apr 2025 –</strong> Biochemistry (Lecture), Faculty of Medicine, The University of Tokyo</li><li><strong>Apr 2024 –</strong> Advanced Genome Informatics, Graduate School of Medicine, The University of Tokyo</li><li><strong>Oct 2023 –</strong> Biochemistry (Laboratory Course), Faculty of Medicine, The University of Tokyo</li><li><strong>Apr 2020 – Sep 2023</strong> Clinical Genetics, Faculty of Medicine, The University of Osaka</li></ul>
 
 <hr />
 
@@ -300,6 +315,8 @@
 <span id="Namba_2024"><span class="authors"><strong>**Namba, S</strong>., Akiyama, M., Hamanoue, H., Kato, K., Kawashima, M., Kushima, I.<span class="au-rest" hidden="">, Matsuda, K., Nakatochi, M., Ogishima, S., Sonehara, K., Suzuki, K., Takata, A., Tamiya, G., Tanikawa, C., Yamamoto, K., Yamamoto, N., Okada, Y., Ozaki, N. &amp; **Okada, Y.</span> <a class="au-toggle au-more" role="button" tabindex="0" aria-label="Show all authors">[…]</a><span class="au-etal"> <i>et al.</i></span> <a class="au-toggle au-less" role="button" tabindex="0" hidden="">[Show fewer authors]</a></span> <a href="https://doi.org/10.1038/s41562-024-02019-y" target="_blank" rel="noopener">Inconsistent embryo selection across polygenic score methods.</a> <i class="journal">Nature Human Behaviour</i> 2264–2267 (2024). </span>
 　　<br />
     
+    <button type="button" class="btn abstract-toggle" aria-expanded="false" style="outline:none; position:relative;white-space: normal;">Abstract</button>
+    
 
      
     <a class="bib-materials" href="https://doi.org/10.1038/s41562-024-02019-y"><button class="btn" style="outline:none; position:relative;white-space: normal;">DOI</button></a>
@@ -323,6 +340,8 @@
 
 
 </p>
+
+<div class="abstract-body" hidden="">Private enterprises offer preimplantation genetic testing with polygenic scores to select embryos with ‘desirable’ potential. In silico simulations using biobank resources show that the selected embryo would rely substantially on the choice of polygenic score method and randomness in score construction, which raises ethical concerns.</div>
 </li>
 <li><p>
 <span id="cancerPRS_2022"><span class="authors"><strong>*Namba, S</strong>., *Saito, Y., Kogure, Y., Masuda, T., Bondy, M. L., Gharahkhani, P.<span class="au-rest" hidden="">, Gockel, I., Heider, D., Hillmer, A., Jankowski, J., MacGregor, S., Maj, C., Melin, B., Ostrom, Q. T., Palles, C., Schumacher, J., Tomlinson, I., Whiteman, D. C., Okada, Y. &amp; Kataoka, K.</span> <a class="au-toggle au-more" role="button" tabindex="0" aria-label="Show all authors">[…]</a><span class="au-etal"> <i>et al.</i></span> <a class="au-toggle au-less" role="button" tabindex="0" hidden="">[Show fewer authors]</a></span> <a href="https://doi.org/10.1158/0008-5472.can-22-1492" target="_blank" rel="noopener">Common germline risk variants impact somatic alterations and clinical features across cancers.</a> <i class="journal">Cancer Research</i> <b>83,</b> 20–27 (2022). </span>
@@ -430,7 +449,7 @@
   <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://twitter.com/NambaShinichi"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/shinichinamba"><i class="fab fa-github fa-2x" title="Github"></i></a><a class="social-icon" href="https://orcid.org/0000-0002-7486-3146"><i class="fab fa-orcid fa-2x" title="ORCID"></i></a><a class="social-icon" href="mailto:snamba@sg.med.osaka-u.ac.jp"><i class="fas fa-envelope fa-2x" title="Mail"></i></a></div><div class="copyright">
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/NambaShinichi"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/shinichinamba"><i class="fab fa-github fa-2x" title="Github"></i></a><a class="social-icon" href="https://orcid.org/0000-0002-7486-3146"><i class="fab fa-orcid fa-2x" title="ORCID"></i></a><a class="social-icon" href="mailto:snamba@sg.med.osaka-u.ac.jp"><i class="fas fa-envelope fa-2x" title="Mail"></i></a></div><div class="copyright">
     
       <p>&copy; 2026 Shinichi Namba. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     

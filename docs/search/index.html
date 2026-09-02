@@ -23,8 +23,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D." />
 <meta property="og:description" content="Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D." />
-<link rel="canonical" href="https://shinichinamba.github.io/search/" />
-<meta property="og:url" content="https://shinichinamba.github.io/search/" />
+<link rel="canonical" href="http://localhost:4000/search/" />
+<meta property="og:url" content="http://localhost:4000/search/" />
 <meta property="og:site_name" content="Shinichi Namba" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
@@ -32,7 +32,7 @@
 <meta name="twitter:site" content="@NambaShinichi" />
 <meta name="twitter:creator" content="@NambaShinichi" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Shinichi Namba"},"description":"Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D.","headline":"Search","url":"https://shinichinamba.github.io/search/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Shinichi Namba"},"description":"Assistant Professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo. M.D., Ph.D.","headline":"Search","url":"http://localhost:4000/search/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -67,7 +67,14 @@
      this file -- even inside a CSS comment it is executed, not quoted.) */
   .featured-research .bibliography { list-style: none; margin: 0; padding: 0; }
   .featured-research .featured-item { margin-bottom: 1.75em; }
-  .featured-research .featured-summary { margin: .3em 0 0 0; font-size: .95em; }
+  /* The summary must read as belonging to the citation above it, so the gap
+     above it is closed while the one below (featured-item's own bottom
+     margin) is left alone. With equal gaps the summary looked as if it could
+     belong to either neighbour. Here the summary, not the list item, closes
+     the entry, so the item's separation (set in publication-interactions)
+     would only reopen that gap. */
+  .featured-research .bibliography li { margin-bottom: 0; }
+  .featured-research .featured-summary { margin: .25em 0 0 0; font-size: .95em; }
 </style>
 <style>
   .au-toggle {
@@ -76,8 +83,15 @@
     border-bottom: 1px dotted currentColor;
   }
   .au-less { margin-left: .35em; font-size: .9em; }
+  /* An abstract belongs to the entry it opens from, so it must sit tight
+     under that citation and let the gap fall below it. The citation
+     paragraph used to carry the entry separation, which pushed an expanded
+     abstract away from its own entry and left it touching the next one; the
+     separation therefore lives on the list item instead. */
+  .bibliography li > p { margin-bottom: 0; }
+  .bibliography li { margin-bottom: 1.5em; }
   .abstract-body {
-    margin: .6em 0 0 0;
+    margin: 0;
     padding: .7em .9em;
     border-left: 3px solid rgba(0, 0, 0, .18);
     background: rgba(0, 0, 0, .035);
@@ -208,7 +222,7 @@
   <!-- start custom footer snippets -->
 
 <!-- end custom footer snippets -->
-<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://twitter.com/NambaShinichi"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/shinichinamba"><i class="fab fa-github fa-2x" title="Github"></i></a><a class="social-icon" href="https://orcid.org/0000-0002-7486-3146"><i class="fab fa-orcid fa-2x" title="ORCID"></i></a><a class="social-icon" href="mailto:snamba@sg.med.osaka-u.ac.jp"><i class="fas fa-envelope fa-2x" title="Mail"></i></a></div><div class="copyright">
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/NambaShinichi"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/shinichinamba"><i class="fab fa-github fa-2x" title="Github"></i></a><a class="social-icon" href="https://orcid.org/0000-0002-7486-3146"><i class="fab fa-orcid fa-2x" title="ORCID"></i></a><a class="social-icon" href="mailto:snamba@sg.med.osaka-u.ac.jp"><i class="fas fa-envelope fa-2x" title="Mail"></i></a></div><div class="copyright">
     
       <p>&copy; 2026 Shinichi Namba. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     

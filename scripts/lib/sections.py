@@ -127,6 +127,10 @@ def paragraph_section(profile: Profile, spec: dict, key: str,
     text = profile.get(field, lang) or profile.get(field, "en")
     if not text:
         return None
+    # A YAML folded scalar (`>`) keeps a trailing newline, which python-docx
+    # turns into a <w:br/> -- an extra blank line under the paragraph that
+    # made the section look like it had double spacing after it.
+    text = str(text).strip()
     # A trailing "など" / "..." reads as padding on a CV. Stripped here rather
     # than in profile.yml so the website keeps its own wording.
     for filler in spec.get("strip_trailing") or ():
@@ -137,14 +141,34 @@ def paragraph_section(profile: Profile, spec: dict, key: str,
                    entries=(Entry(body=(Run(text),)),))
 
 
+def row_matches(r, where: dict | None, exclude: dict | None) -> bool:
+    """Column filters from a section's ``source``.
+
+    ``where`` keeps a row only when every listed column holds one of the
+    listed values; ``exclude`` drops it when any does. Both let one sheet
+    feed several sections -- invited_talks splits into conference talks and
+    research seminars on ``talk_type``.
+    """
+    for col, allowed in (where or {}).items():
+        if r.values.get(col) not in allowed:
+            return False
+    for col, banned in (exclude or {}).items():
+        if r.values.get(col) in banned:
+            return False
+    return True
+
+
 def sheet_section(ds: Dataset, spec: dict, key: str, lang: str,
                   cvp: CVProfile, extra_rows=None,
                   visibility: str | None = None,
                   target: str | None = None,
                   never_show: tuple = ()) -> Section | None:
     """``visibility`` names the gating column; None means show every row."""
+    where = spec["source"].get("where")
+    exclude = spec["source"].get("exclude")
     rows = [r for r in sort_records(ds)
-            if visibility is None or bool(r.values.get(visibility))]
+            if (visibility is None or bool(r.values.get(visibility)))
+            and row_matches(r, where, exclude)]
     items = [(ds, r) for r in rows]
     for eds, erow in (extra_rows or []):
         items.append((eds, erow))
@@ -320,7 +344,9 @@ def build_document(master: dict[str, Dataset], profile: Profile,
                 if visibility:
                     doc.meta["record_ids"] += [
                         r.id for r in ds.records
-                        if bool(r.values.get(visibility))]
+                        if bool(r.values.get(visibility))
+                        and row_matches(r, src.get("where"),
+                                        src.get("exclude"))]
                     doc.meta["record_ids"] += [r.id for _d, r in (extra or [])]
 
             if section is None:

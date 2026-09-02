@@ -132,6 +132,20 @@ def _demote(d: PartialDate, precision: Precision) -> PartialDate:
     return PartialDate(d.year, d.month)
 
 
+def is_ongoing(end: PartialDate | None, today: date | None = None) -> bool:
+    """Has the record not ended yet?
+
+    Replaces the old hand-maintained ``ongoing`` column: a row is ongoing
+    when it carries no end date, or one that has still not passed. The
+    latest instant the partial date could denote is what counts, so an end
+    of ``2028-03`` runs to the last day of that month.
+    """
+    if end is None:
+        return True
+    ref = today or date.today()
+    return end.upper_key() >= (ref.year, ref.month, ref.day)
+
+
 def format_range(start: PartialDate | None, end: PartialDate | None,
                  ongoing: bool, lang: str) -> str:
     """Render a date range the way the current site writes it.
@@ -140,9 +154,15 @@ def format_range(start: PartialDate | None, end: PartialDate | None,
     ``2018/4 - 2020/3`` / ``2023/10 -`` in Japanese (with en dashes).
     Both ends are shown at the coarser of the two precisions, so a
     ``2020`` end date never makes a ``2020-03`` start look day-accurate.
+
+    An ongoing row prints the open form even when an end date is recorded:
+    a scheduled end has not happened yet, so printing it would assert
+    something the record does not know.
     """
     if start is None and end is None:
         return ""
+    if start is not None and ongoing:
+        return f"{start.format(lang)} {EN_DASH}"
     if start is not None and end is not None:
         p = _NAME[min(_ORDER[start.precision], _ORDER[end.precision])]
         s, e = _demote(start, p), _demote(end, p)
@@ -150,8 +170,6 @@ def format_range(start: PartialDate | None, end: PartialDate | None,
             return s.format(lang)
         return f"{s.format(lang)} {EN_DASH} {e.format(lang)}"
     if start is not None:
-        if ongoing:
-            return f"{start.format(lang)} {EN_DASH}"
         return start.format(lang)
     return f"{EN_DASH} {end.format(lang)}"
 

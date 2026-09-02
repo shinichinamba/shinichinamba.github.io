@@ -10,7 +10,7 @@ entries_layout: list
 
 News
 ----
-* **Jun 9, 2026**	Updated the publication list!
+* **Sep 3, 2026**	Updated the publication list!
 * **Oct 16, 2022**	Started my homepage!
 {: .notice--accent}
 
@@ -29,15 +29,15 @@ Job
 
 <HR>
 
-Awards
-------
-{% include cv-section.html rows=site.data.cv.awards lang="en" fields="award,organization" %}
-
-<HR>
-
 Education
 ---------
 {% include cv-section.html rows=site.data.cv.education lang="en" fields="degree,field,department,institution" nofallback="degree" %}
+
+<HR>
+
+Awards
+------
+{% include cv-section.html rows=site.data.cv.awards lang="en" fields="award,organization" %}
 
 <HR>
 
@@ -47,9 +47,10 @@ Fellowships
 
 <HR>
 
-Grants
-------
-{% include cv-grants.html rows=site.data.cv.grants lang="en" %}
+Grants (as Principal Investigator)
+----------------------------------
+{% assign grants_pi = site.data.cv.grants | where_exp: "g", "g.role == 'PI'" %}
+{% include cv-grants.html rows=grants_pi lang="en" %}
 
 <HR>
 

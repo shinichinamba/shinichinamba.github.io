@@ -15,6 +15,13 @@
      this file -- even inside a CSS comment it is executed, not quoted.) */
   .featured-research .bibliography { list-style: none; margin: 0; padding: 0; }
   .featured-research .featured-item { margin-bottom: 1.75em; }
-  .featured-research .featured-summary { margin: .3em 0 0 0; font-size: .95em; }
+  /* The summary must read as belonging to the citation above it, so the gap
+     above it is closed while the one below (featured-item's own bottom
+     margin) is left alone. With equal gaps the summary looked as if it could
+     belong to either neighbour. Here the summary, not the list item, closes
+     the entry, so the item's separation (set in publication-interactions)
+     would only reopen that gap. */
+  .featured-research .bibliography li { margin-bottom: 0; }
+  .featured-research .featured-summary { margin: .25em 0 0 0; font-size: .95em; }
 </style>
 {% include publication-interactions.html %}

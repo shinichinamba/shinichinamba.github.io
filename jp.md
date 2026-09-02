@@ -14,7 +14,7 @@ entries_layout: list
 更新情報
 --------
 
-* **2026/6/9**	論文リストを更新しました
+* **2026/9/3**	論文リストを更新しました
 * **2022/10/16**	ホームページを開設しました
 {: .notice--accent}
 
@@ -68,14 +68,6 @@ entries_layout: list
 ------
 
 {% include cv-section.html rows=site.data.cv.teaching lang="ja" fields="course,institution,school" sep="　" %}
-
-<HR>
-
-CV
---
-
-* [日本語CV (PDF)]({{ site.baseurl }}/assets/cv/Shinichi_Namba_CV_JA.pdf)
-* [English CV (PDF)]({{ site.baseurl }}/assets/cv/Shinichi_Namba_CV_EN.pdf)
 
 <HR>
 

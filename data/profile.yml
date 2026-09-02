@@ -25,8 +25,8 @@ current_position:
   ja: 東京大学大学院医学系研究科 遺伝情報学 助教
   en: Assistant Professor, Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo
 research_interests:
-  ja: 遺伝統計学 / 集団遺伝学 / がん / ゲノムワイド関連解析 / 選択圧 / ゲノム情報にもとづいた疾患予測・薬剤開発 など
-  en: Statistical Genetics / Population Genomics / Cancer / GWAS / Selection / Polygenic Score / Drug discovery ...
+  ja: 遺伝統計学 / 集団遺伝学 / バイオインフォマティクス / がん / ゲノム個別化医療 / ゲノム創薬
+  en: Statistical Genetics / Population Genomics / Computational Biology / Cancer / Precision medicine / Drug discovery
 bio_short:
   ja: 東京大学大学院医学系研究科遺伝情報学（岡田随象教授）にて助教をしております。ヒトゲノムを対象とした研究を行っており、特にヒト形質の遺伝的構造の解明、疾患予測、創薬を目的としています。大阪大学大学院医学系研究科遺伝統計学（指導教官：岡田随象教授）にて博士（医学）を取得。博士課程入学以前は、東京大学大学院医学系研究科細胞情報学（現 国立がんセンター研究所細胞情報学分野）において間野博行教授・河津正人先生のご指導のもと、がんにおけるトランスクリプトーム研究およびメチローム研究を行いました。
   en: I am an assistant professor at Department of Genome Informatics, Graduate School of Medicine, The University of Tokyo, Japan (Prof. Yukinori Okada). My research focuses on human genetics. In particular, I am interested in elucidating the genetic structure of complex traits, disease risk prediction, and drug discovery. Before completing Ph.D. at Osaka University (Prof. Yukinori Okada), I studied transcriptome and methylome in cancer under Prof. Hiroyuki Mano and Dr. Masahito Kawazu at the University of Tokyo.
@@ -34,5 +34,14 @@ bio_long:
   ja: null
   en: null
 cv_summary:
-  ja: ヒトゲノムを対象とした遺伝統計学研究に従事している。バイオバンク規模のデータを用いて、複合形質の遺伝的構造の解明、遺伝子–環境相互作用の解析、多遺伝子リスクスコアによる疾患予測、およびゲノム情報にもとづく創薬標的の同定を主要な研究課題としている。
-  en: My research applies statistical genetics to human genome data. Using biobank-scale cohorts, I work on elucidating the genetic architecture of complex traits, characterising gene-environment interactions, evaluating polygenic risk prediction, and identifying drug targets from human genetic evidence.
+  ja: H30年東京大学医学部医学科を卒業。大学在学時には自発的に同大学細胞情報学教室（間野博行教授）に参加し、がんのトランスクリプトーム及びメチローム異常を研究した。日本赤十字社医療センターにて初期臨床研修を修了後、R2年大阪大学大学院医学系研究科博士課程に進学（指導教官：岡田随象教授）。R5年9月早期修了、10月より現職。研究テーマは遺伝統計学を駆使した疾患病態の解明と創薬。ゲノムワイド関連解析（GWAS）および全ゲノム解析（WGS）の国際共同研究に多数参加。特に国際バイオバンク連携において研究グループを主導し、疾患ゲノムのオミクス統合解析による創薬フレームワークの提案・実証を行った。バイオバンク・ジャパン（BBJ）のゲノムデータ管理実務を担当している。がんの遺伝的リスクと体細胞変異の関連を網羅的に解明し、PRSの臨床応用における技術的・倫理的課題を明らかにする等、異分野融合研究を推進している。
+  en: >
+    Dr. Shinichi Namba is an assistant professor at the Department of Genome Informatics, Graduate School of Medicine, the University of Tokyo.
+    He received his medical degree from the University of Tokyo in 2018.
+    After two years of junior residency, he joined Prof. Yukinori Okada’s group at Osaka University Graduate School of Medicine, where he earned his Ph.D. in 2023.
+    He has been in his current position since October 2023.
+    He specializes in the genetics of complex traits and is studying genome-wide associations of complex traits and their clinical implications.
+    He has contributed to many international collaborations on genome-wide association studies and whole-genome sequencing.
+    In particular, he has led a working group within an international biobank collaboration and developed and validated a genomics-driven drug discovery framework integrating disease genetics with multi-omics data.
+    He also contributes to genomic data management and analysis at BioBank Japan.
+    His interdisciplinary research spans a pan-cancer analysis of the relationship between genetic cancer risk and somatic alterations, as well as investigations into the technical and ethical challenges of the clinical application of polygenic risk scores.
