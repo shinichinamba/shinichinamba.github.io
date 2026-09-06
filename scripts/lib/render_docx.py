@@ -34,6 +34,12 @@ HYPERLINK_RT = ("http://schemas.openxmlformats.org/officeDocument/2006/"
 #: fixed timestamp so repeated builds are byte-identical
 EPOCH = datetime(2000, 1, 1)
 
+#: Body text is justified; headings, the header block and the footer are not,
+#: because they are single lines where justification means nothing.  A
+#: justified paragraph only stretches the lines that wrap, so the hanging
+#: indent and its tab stop are unaffected.
+JUSTIFY = WD_ALIGN_PARAGRAPH.JUSTIFY
+
 
 # --------------------------------------------------------------------------
 # low-level helpers
@@ -168,8 +174,10 @@ class DocxRenderer:
 
     # -- paragraph builders ------------------------------------------------
     def _p(self, *, space_before=0.0, space_after=0.0, keep_next=False,
-           keep_together=True):
+           keep_together=True, align=None):
         p = self.docx.add_paragraph()
+        if align is not None:
+            p.alignment = align
         pf = p.paragraph_format
         pf.space_before = Pt(space_before)
         pf.space_after = Pt(space_after)
@@ -188,7 +196,7 @@ class DocxRenderer:
 
     def _entry(self, e: Entry, *, indent_mm: float, base_size: float,
                lead: str | None = None):
-        p = self._p(space_after=SPACE["after_entry"])
+        p = self._p(space_after=SPACE["after_entry"], align=JUSTIFY)
         pf = p.paragraph_format
         pf.left_indent = Mm(indent_mm)
         pf.first_line_indent = Mm(-indent_mm)
@@ -203,7 +211,7 @@ class DocxRenderer:
             p.add_run("\t")
         emit_runs(p, list(e.body), base_size=base_size)
         if e.detail:
-            d = self._p(space_after=SPACE["after_entry"])
+            d = self._p(space_after=SPACE["after_entry"], align=JUSTIFY)
             dpf = d.paragraph_format
             dpf.left_indent = Mm(indent_mm)
             # Same size as the body: the advisor's name should not look like
@@ -238,12 +246,20 @@ class DocxRenderer:
         width = height * (w / h)
         usable = PAGE["width"] - PAGE["margin_left"] - PAGE["margin_right"]
 
+        left_mm = usable - width - PHOTO["gap_mm"]
+        right_mm = width + PHOTO["gap_mm"]
+
         table = self.docx.add_table(rows=1, cols=2)
         _borderless(table)
         table.autofit = False
+        # A fixed layout makes Word and LibreOffice size the columns from
+        # w:tblGrid and ignore the cell widths, so both have to be set --
+        # otherwise the name block gets half the page and a long name wraps.
+        table.columns[0].width = Mm(left_mm)
+        table.columns[1].width = Mm(right_mm)
         left, right = table.rows[0].cells
-        left.width = Mm(usable - width - PHOTO["gap_mm"])
-        right.width = Mm(width + PHOTO["gap_mm"])
+        left.width = Mm(left_mm)
+        right.width = Mm(right_mm)
 
         first = True
         for e, size, role in self._header_entry_sizes(s):
@@ -270,7 +286,7 @@ class DocxRenderer:
     def _paragraph_section(self, s: Section):
         self._heading(s.heading)
         for e in s.entries:
-            p = self._p(space_after=SPACE["after_entry"])
+            p = self._p(space_after=SPACE["after_entry"], align=JUSTIFY)
             emit_runs(p, list(e.body), base_size=SIZE["body"])
 
     def _divider_section(self, s: Section):
@@ -285,7 +301,7 @@ class DocxRenderer:
     def _plainlist_section(self, s: Section):
         self._heading(s.heading)
         for e in s.entries:
-            p = self._p(space_after=1.0)
+            p = self._p(space_after=1.0, align=JUSTIFY)
             emit_runs(p, list(e.body), base_size=SIZE["body"])
 
     def _entries_section(self, s: Section):
@@ -296,7 +312,7 @@ class DocxRenderer:
     def _numbered_section(self, s: Section):
         self._heading(s.heading)
         if s.note:
-            p = self._p(space_after=SPACE["after_entry"])
+            p = self._p(space_after=SPACE["after_entry"], align=JUSTIFY)
             emit_runs(p, list(s.note), base_size=SIZE["note"])
         for e in s.entries:
             self._entry(e, indent_mm=8.0, base_size=SIZE["body"])

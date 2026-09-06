@@ -163,10 +163,13 @@ class TestDocumentModel(unittest.TestCase):
             self.assertNotIn("26K18279", text)
             self.assertNotIn("Grant No", text)
 
-    def test_photo_only_on_the_japanese_cv(self):
+    def test_photo_on_every_profile_but_the_published_english_cv(self):
+        """The photo is keyed by profile, so `en` and `en_full` can differ."""
         self.assertIsNone(self.doc("en").meta["photo"])
-        self.assertTrue(self.doc("ja").meta["photo"])
-        self.assertTrue((REPO / self.doc("ja").meta["photo"]).exists())
+        for name in ("ja", "ja_full", "en_full"):
+            photo = self.doc(name).meta["photo"]
+            self.assertTrue(photo, f"{name} should carry a portrait")
+            self.assertTrue((REPO / photo).exists(), photo)
 
     def test_header_has_address_and_no_online_links(self):
         for name in ("en", "ja"):

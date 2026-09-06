@@ -153,9 +153,13 @@ blocks:
 options:
   # true folds clinical_training rows into the Japanese 職歴 section
   ja_merge_clinical_into_appointments: true
-  # a portrait beside the header block; Japanese CV only
+  # A portrait beside the header block, keyed by CV profile name (not by
+  # language): the published English CV stays photo-free, the private full
+  # copies and the Japanese CV carry one.
   photo:
     ja: assets/img/headshot_snamba.jpg
+    ja_full: assets/img/headshot_snamba.jpg
+    en_full: assets/img/headshot_snamba.jpg
     en: null
   # ORCID and researchmap are printed as plain URLs rather than hyperlinks,
   # so the identifier is readable on paper.

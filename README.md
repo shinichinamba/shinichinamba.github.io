@@ -63,7 +63,7 @@ One document per language, not a short/full choice. Each CV opens with the
 short-CV body and closes with the complete publication list:
 
 ```
-name · degrees · position · email · address      (JA also carries a portrait)
+name · degrees · position · email · address   (portrait: all but the EN CV)
 Personal Statements / Research Interests
 Academic Appointments · Clinical Training · Education
 Honors and Awards · Research Funding · Fellowships
@@ -93,10 +93,12 @@ House style, set in `scripts/lib/cite.py` and `scripts/cv_sections.yml`:
 
 ## Requirements
 
-- **Python 3.12+** with `openpyxl`, `PyYAML`, `python-docx`, `bibtexparser==1.4.4`
+- **Python 3.12+** with `openpyxl`, `PyYAML`, `python-docx`,
+  `bibtexparser==1.4.4`, and `Pillow` (read the portrait's aspect ratio so the
+  header photo cannot be distorted)
 
   ```bash
-  python3 -m pip install openpyxl PyYAML python-docx "bibtexparser==1.4.4"
+  python3 -m pip install openpyxl PyYAML python-docx "bibtexparser==1.4.4" Pillow
   ```
 
 - **LibreOffice** for DOCX → PDF (`brew install --cask libreoffice`). Without

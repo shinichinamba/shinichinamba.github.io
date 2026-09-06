@@ -277,7 +277,7 @@ def build_document(master: dict[str, Dataset], profile: Profile,
                       and opts.get("ja_merge_clinical_into_appointments"))
     plain_keys = set(opts.get("plain_text_links") or ())
     never_show = tuple(opts.get("never_show") or ())
-    photo = (opts.get("photo") or {}).get(cvp.language)
+    photo = (opts.get("photo") or {}).get(cvp.name)
 
     doc = Document(language=cvp.language, variant=cvp.variant,
                    profile_name=cvp.name,
