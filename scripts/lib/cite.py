@@ -52,6 +52,8 @@ class CiteStyle:
     corr_marker: str = "**"
     #: "prefix" -> *Namba S (what the website does), "suffix" -> Namba S*
     marker_position: str = "prefix"
+    #: the journal name is always italic; the CV additionally sets it bold
+    journal_bold: bool = False
 
     def legend(self, lang: str) -> str:
         if lang == "ja":
@@ -67,7 +69,7 @@ SITE_STYLE = CiteStyle()
 #: The CV house style.
 CV_STYLE = CiteStyle(name_comma=False, initial_periods=False,
                      eq_marker="*", corr_marker="\u266f",
-                     marker_position="suffix")
+                     marker_position="suffix", journal_bold=True)
 
 
 @dataclass(frozen=True)
@@ -208,7 +210,7 @@ def cite_runs(e: BibEntry, me: SelfName, *, title_override: str | None = None,
     jn = journal_name(e)
     if jn:
         runs.append(Run(" "))
-        runs.append(Run(jn, italic=True))
+        runs.append(Run(jn, italic=True, bold=style.journal_bold))
 
     vol = e.get("volume")
     if vol:
